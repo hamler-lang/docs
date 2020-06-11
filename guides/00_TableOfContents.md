@@ -41,5 +41,5 @@
    - [Other common type classes](06_TypeClasses.md#other-common-type-classes)
 7. [**Applicative and Monad**](07_ApplicativeAndMonad.md)
 8. Foreign Language Interface
-9. Concurrency and Distrubutaion
+9. Concurrency and Distribution
 10. OTP
