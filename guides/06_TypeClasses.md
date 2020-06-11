@@ -47,7 +47,7 @@ class Functor f where
   map :: forall a b. (a -> b) -> f a -> f b
 
 instance Functor Maybe where
-  map f (Just x) = Just (fn x)
+  map f (Just x) = Just (f x)
   map f  Nothing = Nothing
 
 instance Functor [] where
