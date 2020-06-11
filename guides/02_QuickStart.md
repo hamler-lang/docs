@@ -8,7 +8,7 @@
 
 ---
 
-## Intall
+## Install
 
 **Homebrew(macOS)**
 
@@ -19,7 +19,7 @@ $ brew install hamler
 
 **Install from source code(macOS)**
 
-1. Install Eralng
+1. Install Erlang
 
    ```shell
    $brew install erlang@22
