@@ -41,9 +41,10 @@ $ brew install hamler
    $ cd hamler
    $ make
    $ make install
-   $ cp repl/replsrv /usr/local/lib/hamler/bin/
-   $ cp lib /usr/local/lib/hamler/
-   $ cp ebin /usr/local/lib/hamler/
+   $ sudo mkdir -p /usr/local/lib/hamler/bin
+   $ sudo cp repl/replsrv /usr/local/lib/hamler/bin/
+   $ sudo cp -rv lib /usr/local/lib/hamler/
+   $ sudo cp -rv ebin /usr/local/lib/hamler/
    ```
 
 
@@ -121,9 +122,9 @@ The syntax for import in Hamler is `import <module name>`. This has to be done b
 ```haskell
 import Data.List       --Modules are imported using their full names
 import Data.Maybe (isJust, isNothing)   -- We can choose which functions to import
-import qualified Data.Funtion as F     
-{- We can deal with ambiguisity by this, this means we need to add "F." Before every functions we imported from Data.Function to specify that it is from Data.Function-}
-import Prelue hiding (fst)  -- Prelude is the module always get imported, this way we can define our own fst
+import Data.Funtion as F     
+-- We can deal with ambiguity by adding an alias. This means we need to add "F." before every functions that are exposed from Data.Function to specify that it is from this module
+import Prelude hiding (fst)  -- The Prelude is imported by default. By hiding `fst`, we can define our own version.
 ```
 
 
