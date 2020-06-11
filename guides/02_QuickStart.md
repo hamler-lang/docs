@@ -92,7 +92,7 @@ $ make run
 
 ---
 
-## Module struture
+## Module structure
 
 A module is simply a bunch of related functions, types and type classes. This makes a program a collection of modules. This helps organize your code and make reuse some of the code easier.
 
