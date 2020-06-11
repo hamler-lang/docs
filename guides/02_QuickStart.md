@@ -103,7 +103,7 @@ A module is simply a bunch of related functions, types and type classes. This ma
 This how we declare a new module and specify which of the functions or types are exported.
 
 ```haskell
-module Helllo (greet, farewell) where
+module Hello (greet, farewell) where
 {-the module name can be a word or words seperated by '.',
   in this case i it is just "Hello"-}
 
