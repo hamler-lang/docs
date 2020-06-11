@@ -21,7 +21,7 @@ Here are some examples of intances of `Applicatve`
 ```haskell
 instance Applicative Maybe where
   pure = Just
-  Nothig   <*> mb = Nothing
+  Nothing   <*> mb = Nothing
   (Just f) <*> mb = map f mb
 
 instance Applicative [] where
