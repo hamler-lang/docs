@@ -56,7 +56,7 @@ map f (x:xs) = f x : xs
 
 filter :: forall a. (a -> Boolean) -> [a] -> [a]
 filter p []     = []
-filter p (x:xs) = if f x then (x : filter p xs)
+filter p (x:xs) = if p x then (x : filter p xs)
                          else filter p xs
 
 foldr :: forall a b. (a -> b -> b) -> b -> [a] -> b --simplified defination see typeclass for more info
