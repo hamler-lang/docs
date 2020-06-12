@@ -209,7 +209,7 @@ type Person =
 
 {-
 This is syntax sugared
-"type Person = Record (FisrtName  :: Name , SecondName ::Name)"
+"type Person = Record (FirstName  :: Name , SecondName :: Name)"
 -}
 ```
 
