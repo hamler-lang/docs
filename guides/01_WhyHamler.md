@@ -1,7 +1,7 @@
 # Why Hamler?
 
 - [What's Hamler](#whats-hamler)
-- [Prequisitcs](#prequisitcs)
+- [Prerequisites](#prerequisites)
 - [Haskell Style](#haskell-style)
 - [Type Checking](#type-checking)
 - [Erlang and Concurrency](#erlang-and-concurrency)
@@ -31,7 +31,7 @@ Cool, let's quit the bragging and kick off.
 
 ---
 
-## Prequisitcs
+## Prerequisites
 
 - Basic Programming Skills
 
