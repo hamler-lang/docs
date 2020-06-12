@@ -217,9 +217,9 @@ Fields can be accessed by `.`
 
 ```haskell
 leader :: Person
-leader = {firstName : "John", sastName : "Portsman"}
+leader = {firstName : "John", lastName : "Portsman"}
 
->leader.fisrtName
+>leader.firstName
 "John"
 ```
 
@@ -227,7 +227,7 @@ This is how we update a record.
 
 ```haskell
 newLeader :: Person
-newLeader = Leader {fisrtName : "James"}
+newLeader = Leader {firstName : "James"}
 
 >newLeader.lastName
 "Portsman"
