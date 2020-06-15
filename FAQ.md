@@ -4,27 +4,25 @@
 
 ## What does the Hamler Logo mean?
 
-A: Lambda (λ) + Erlang VM.
+A: Lambda (**λ**) + **E**rlang VM.
 
 ![hamler-logo](https://avatars2.githubusercontent.com/u/49756617?s=200&v=4)
 
-### Elixir is already there. ,running on Erlang VM, how does this differ?
+### Elixir is already there, running on Erlang VM, how does this differ?
 
-TODO:
+1. Elixir is dynamically typed, but Hamler is statically typed. Since Hamler's compiler is adapted from purescript, it has a powerful type system.
+2. We prefer Haskell style syntax.
+3. Elixir compiles to Erlang AST. Hamler compiles to CoreErlang IR.
 
 ### What's the difference between Hamler and Puerl?
 
-TODO:
+Firstly, purerl translates PureScript to Erlang source code directly, and Hamler compile source code to CoreErlang IR.
 
-First, purerl translates PureScript to Erlang source code directly, and hamler compile source code to CoreErlang IR.
+Secondary, we modified the some frontend (CST, AST and CoreFn) of PureScript to make the syntax of Hamler more like Haskell. At the same time we are trying to make its syntax more approachable for Erlang users.
 
-Second, we modified the CST, AST and CoreFn of PureScript to make the hamler syntax is more like Haskell.
 
-The hamler compiler is forked from PureScript compiler 0.13.6.
 
 ### What's the difference between Hamler and Haskell?
-
-TODO:
 
 - Strict vs Lazy evaluation
 - Hamler running on Erlang VM - Beam
@@ -49,7 +47,7 @@ Yes. The compiler is forked from [PureScript][PureScriptSite] 0.13.6
 
 ### Is there a windows install method?
 
-TODO:
+Not yet. Coming soon.
 
 ## Tools and IDE
 
