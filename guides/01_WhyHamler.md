@@ -1,10 +1,6 @@
 # Why Hamler?
 
-- [What's Hamler](#whats-hamler)
-- [Prerequisites](#prerequisites)
-- [Haskell Style](#haskell-style)
-- [Type Checking](#type-checking)
-- [Erlang and Concurrency](#erlang-and-concurrency)
+[ToC]
 
 For almost a decade, we have been developing software systems based on Erlang/OTP, especially our main product [EMQ X](https://github.com/emqx/emqx) - the scalable open-source MQTT broker. So, we have always believed that Erlang is a masterpiece of engineering. With amazing concurrency, distribution and fault tolerance, it is one of the few general-purpose language platforms able to properly handle concurrency and soft realtime.
 

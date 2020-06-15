@@ -1,5 +1,7 @@
 # Applicative and Monad
 
+[ToC]
+
 In this chapter, we are going to look at two very important type class, Applicative Functor and Monad.
 
 **Applicative**
