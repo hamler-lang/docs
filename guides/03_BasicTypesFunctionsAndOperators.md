@@ -2,13 +2,7 @@
 
 # Basic Types, Functions and Operators
 
-- [Simple Types](#simple-types)
-- [Operators](#operators)
-- [Functions](#functions)
-- [Quantified Types](#quantified-types)
-- [Notes on Indentations](#notes-on-indentations)
-- [Type Synynom](#type-synynom)
-- [Record](#record)
+[ToC]
 
 ---
 

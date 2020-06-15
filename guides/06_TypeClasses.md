@@ -2,9 +2,7 @@
 
 # Type Class
 
-- [Intro](#intro)
-- [Functor](#functor)
-- [Other common type classes](#other-common-type-classes)
+[ToC]
 
 ---
 
