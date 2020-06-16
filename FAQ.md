@@ -1,64 +1,68 @@
-# FAQ
+# The Hamler Language FAQ
 
-## Language
+## 1. About the Language
 
-## What does the Hamler Logo mean?
+## 1.1 What does the Hamler Logo mean?
 
-A: Lambda (**λ**) + **E**rlang VM.
+A: **λE** = Lambda (**λ**) + **E**rlang VM.
 
 ![hamler-logo](https://avatars2.githubusercontent.com/u/49756617?s=200&v=4)
 
-### Elixir is already there, running on Erlang VM, how does this differ?
+### 1.2 Elixir is already there, running on Erlang VM, how does this differ?
 
-1. Elixir is dynamically typed, but Hamler is statically typed. Since Hamler's compiler is adapted from purescript, it has a powerful type system.
-2. We prefer Haskell style syntax.
-3. Elixir compiles to Erlang AST. Hamler compiles to CoreErlang IR.
+**Hamler** is a completely different language from **Elixir**, though they are both compiled to Beam bytecode and running on Erlang VM.
 
-### What's the difference between Hamler and Puerl?
+1. **Elixir** is a dynamically-typed functional programming language. **Hamler** is a strongly-typed functional language with type checking at compile-time.
 
-Firstly, purerl translates PureScript to Erlang source code directly, and Hamler compile source code to CoreErlang IR.
+2. **Elixir** has Ruby-like syntax, and the community mainly comes from Ruby On Rails. **Hamler** has Haskell and ML-style syntax, the core development team comes from Erlang and Haskell communities.
 
-Secondary, we modified the some frontend (CST, AST and CoreFn) of PureScript to make the syntax of Hamler more like Haskell. At the same time we are trying to make its syntax more approachable for Erlang users.
+3. The design of **Hamler** compiler is also different from **Elixir**. **Hamler** source code is compiled to CoreErlang IR, while **Elixir** is compiled to Erlang AST.
+
+### 1.3 What are the differences between Hamler and Puerl?
+
+**Purerl** is a backend of Purescript language, which translates Purescript to Erlang source code.
+
+The **Hamler** compiler v0.1 is forked from PureScript v0.13.6. Purescrip's Eco-system is mostly tailored for Javascript and NodeJS which is too limited for Erlang/OTP ecosystem if we just make Hamler a backend of Purescript.
+
+We introduced many Erlang data types as primary types, such as Erlang atoms, binaries, tuples, lists and maps. And at the same time, we have to modify the whole frontend (CST, AST, CoreFn and CodeGen) of PureScript to support expressions/syntax sugar from Erlang/OTP, such as binary match, list comprehensions, map pattern match...
+
+### 1.4 What's the difference between Hamler and Haskell?
+
+**Hamler** is strictly evaluated, compiled to Beam bytecode and running on Erlang VM, though it has the Haskell-style syntax.
+
+### 1.5 How does hot code reloading work with static types, if the data types change between reloads? What's the upgrade story?
+
+The strongly-typed Hamler source code is compiled to dynamic CoreErlang finally. So, we think the hot-upgrade feature of Erlang should still work.
 
 
+## 2. About the Compiler
 
-### What's the difference between Hamler and Haskell?
+### 2.1 Is the compiler forked from [PureScript][PureScriptHamler] project?
 
-- Strict vs Lazy evaluation
-- Hamler running on Erlang VM - Beam
+Yes. Forked from [PureScript][PureScriptSite] 0.13.6
 
-### How does hot code reloading work with static types, if the data types change between reloads? What's the upgrade story?
+[PureScriptHamler]: https://github.com/hamler-lang/purescript
 
-### I looked at the "Cheatsheet" and it indeed looks like a different backend for purescript, similar to purerl. I don't know why they say hamlerlang is a new programming language. Maybe there are big differences that I'm not seeing at a glance.
 
-A:
+## 3. Install Packages
 
-TODO:
-
-## Compiler
-
-### Is the compiler forked from [PureScript][PureScriptSite] project?
-
-Yes. The compiler is forked from [PureScript][PureScriptSite] 0.13.6
-
-[PureScriptSite]: https://www.purescript.org/
-
-## Install
-
-### Is there a windows install method?
+### 3.1 Is there a Windows install method?
 
 Not yet. Coming soon.
 
-## Tools and IDE
 
-### Does that means the IDE support is there?
+## 4. Tools and IDE
 
-A: TODO
+### 4.1 Does that mean the IDE support is there?
+
+IDE support, such as Vim, Emacs and VSCode, is still at the planning stage.
 
 
-## Milestones
+## 5. Milestones
 
-### Is **Hamler** used by emq in any product already?
+### Is **Hamler** used by [**EMQ X**][EmqxGithub] project in any product already?
 
-A: No. Hamler 0.1 is far from being used in product applications. We plan to introduce Hamler 1.0 in emqx v7.0 release.
+No. Hamler v0.1 is far from being used in product applications. We are planning to introduce Hamler 1.0 in [**EMQ X**][EmqxGithub] v7.0 release.
+
+[emqxGithub]: https://github.com/emqx/emqx/
 
