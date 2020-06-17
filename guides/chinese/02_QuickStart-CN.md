@@ -5,7 +5,7 @@
 
 ---
 
-## ＃＃安装
+## 安装
 
 **Homebrew(macOS)**。
 
@@ -76,7 +76,7 @@ $ hamler repl
 
 ---
 
-## ＃＃创建一个项目
+## 创建一个项目
 
 ```shell
 $ mkdir demo-project
