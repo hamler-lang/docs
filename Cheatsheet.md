@@ -1,5 +1,32 @@
 # Hamler Cheatsheet
 
+Hamler is a haskell-style functional programming language running on Erlang VM.
+
+![hamler-logo](https://www.hamler-lang.org/images/hamler-logo.png)
+
+[ToC]
+
+## Hello world
+
+```haskell
+module Main where
+
+import Prelude
+
+main :: IO ()
+main = println "Hello, world!"
+```
+
+## Hamler REPL
+
+```shell
+hamler repl
+> import Data.Map as Map
+> Map.empty
+#{}
+>
+```
+
 ## Comments
 
 ```haskell
@@ -19,77 +46,42 @@ false :: Boolean
 "hello" :: String
 
 -- Variables Binding
-a = 1
-```
-
-## Bindings
-
-### let
-
-```Haskell
-do
-  let n = 1 + 2
-  let absn = if n < 0 then -n else n
-  ...
-```
-
-```haskell
- $ repl
- > let x = 1
- > x
- 1
-```
-
-### let .. in ..
-
-```haskell
-z = let x = 3
-        y = 2 * x
-    in  x * y
-```
-
-### where
-
-```haskell
-z = x * y
-    where
-      x = 3
-      y = 5
+i = 1
+(a, b) = (1, 2)
 ```
 
 ## Basic Types
 
 | Type              | Values        | Description                   |
 | ----------------- | ------------- | ----------------------------- |
-| Bool              | true \| false | Boolean type                  |
-| Atom(Symbol)      | :a, :b        |                               |
-| Char              | 'c', 'x'      |                               |
+| Atom              | :ok, :error   | Erlang Atom type              |
+| Boolean(Bool)     | true \| false | Boolean type                  |
+| Char              | 'c', 'x'      | UTF-8 character                |
+| String            | "hello"       | List of UTF-8 character        |
 | Integer(Int)      | 1, 2, -10     | Integer type                  |
 | Float(Double)     | 3.14          | Float type                    |
-| String            | "hello"       | String is a list of character |
-| Tuple             | (1, true)     |                               |
 | List              |               |                               |
-| Enum, Range       |               |                               |
-| Binary            |               | Erlang Bitstrings             |
-| Map               |               | Erlang Map                    |
+| Tuple             | (1, true)     |                               |
+| Map               | #{"k" => "v"} | Erlang Map                    |
 | Record            |               |                               |
+| Binary            | <<1,2,3>>     | Erlang Binary/Bitstring       |
 | Pid               |               | Erlang Pid                    |
 | Port              |               | Erlang Port                   |
-| Ref               |               | Erlang Reference              |
+| Reference(Ref)    |               | Erlang Reference              |
 
 ### Booleans
 
 ```haskell
-true | false
+true || false
 ```
 
-### Numbers
+### Integers and Floats
 
-Two types of numeric literals: integers and floats.
+Two types of numeric literals: Integers and Floats.
 
 ```haskell
 -- Integer
-1,2,-10
+1, 2, -10
 
 -- binary, octal, and hex literals
 0x1, 0X1, 0x2a, 0X2A
@@ -105,37 +97,45 @@ Two types of numeric literals: integers and floats.
 
 ### Atoms
 
-```
+In hamler, atoms are started with ':', and mapping to Erlang atoms.
+
+```hamler
 :atom, :ok, :error
+```
+
+### Chars
+
+UTF-8 unicode characters.
+
+```haskell
+'a', 'b', 'の'
 ```
 
 ### Strings
 
+In hamler, string is a list of UTF-8 unicode characters.
+
 ```haskell
 "Hello, World!"
-printf "foo %s %d %.2f" "bar" 7 3.1415
+"你好，世界"
+"ハロー、ワールド"
 
 -- Escape Codes
 "\r\n ..."
 
 -- ++ to concat strings
 "Hello " ++ " World"
-```
 
-### Binaries
-
-```erlang
-<<1,2,3>>
-<<"ABC">>
-<<1:16,2:4,3:4>>
+-- TODO
+printf "foo %s" "bar"
 ```
 
 ### Tuples
 
-A tuple is a sequence of values of different types:
+A tuple is a sequence of values of different types. In hamler. the maximum length of the tuple is 7.
 
 ```haskell
-(1, "a", True)
+(1, "a", true)
 (1, "a")
 
 -- fst, snd
@@ -147,114 +147,101 @@ snd (1, 'a') :: Char    -- 'a'
 
 A list is sequence of values of the same type:
 
-```haskell
+```erlang
+{-- List --}
 [] -- empty list
-x : xs -- Cons operator meaning that x is put on the front of list xs
-
 [1,2,3] -- Integer list
 
-{-
-[1,2,3] can be desugared to
-(1:(2:(3:[])))
--}
+[1|[2,3]] -- Cons
+[1|[2|[3|[]]]] -- Cons
 
-```
-
-**List comprehension:**
-
-A list comprehension consists of four types of elements: *generators*, *guards*, *local bindings*, and *targets*.
-
-```haskell
--- Examples
-double = [x*2 | x <- [1,2,3]]      -- double = [2,4,6]
-
-squares = [x * x | x <- [1..]]     -- This is an infinite list
-
--- Multiple generators
-[(x,y) | x <- [1,2,3], y <- [4,5]]
-
--- Dependent generators
-[(x,y) | x <- [1..3], y <- [x..3]]
-
--- Conditions
-[x | x <- [1..10], even x]
-```
-
-### Enumerations, Range
-
-```haskell
-[1..10]
---[1,2,3,4,5,6,7,8,9,10]
-
-[1, 3..100]
---[1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31,33,35,37,39,41,43,45,47,49,51,53,55,57,59,61,63,65,67,69,71,73,75,77,79,81,83,85,87,89,91,93,95,97,99]
-
-['a'..'z']
---"abcdefghijklmnopqrstuvwxyz"
+[x|_] = [1,2,3] -- List pattern
+[_|xs] = [1,2,3] -- List pattern
+[x|xs] -- Cons
 ```
 
 ### Maps
 
-Erlang style maps:
+Erlang style maps are imported to hamler language:
 
-```haskell
+```Haskell
 -- New map, values and keys must have the same type.
-m = #{"foo" => "bar", "bar" => "foo"}
+m = #{:foo => "foo", :bar => "bar"}
 
--- Match Map
-#{"foo" := a, "bar" := b} = m
-a :: String               -- "bar"
-b :: String
+-- Pattern matching
+#{:foo := a, :bar := b} = m
+a :: String -- "foo"
+b :: String -- "bar"
 
 -- get, put
-m1 = Map.put "key" "val"
-Map.get "foo" m :: String -- "bar"
-Map.get "key" m1 :: String --"val"
+import Data.Map as Map
+m1 = Map.put :key "val"
+Map.get :foo m :: String -- "foo"
+Map.get :key m1 :: String --"val"
 
 -- keys, values
-keys   = Map.keys   m :: [String]
-values = Map.values m :: [String]
+keys   = Map.keys   m -- [String]
+values = Map.values m -- [String]
 ```
 
 ### Records
 
-```Haskell 
+```haskell
 -- declare a Person record
-data Person = Person {name :: String, age :: Integer}
-
--- or
-data Person = {name :: String, age :: Integer}
+type Person = {name :: String, age :: Integer}
 
 -- create a Person record
-p = Person {name = "John", age = 12}
+p = {name = "John", age = 12}
 
 -- update a Person record
 p1 = p {name = "Miles", age = 20}
 
--- getters
+-- accessors
 name = p1.name :: String
 age = p1.age   :: Integer
 ```
 
+## Binaries
+
+Binaries are imported from Erlang, which are raw byte strings.
+
+```erlang
+-- Construct Binary
+<<127,0,0,1>>
+<<"ABC">>
+<<1:16,2:4,3:4>>
+
+-- Binary Pattern Match
+<<x:3,y:5,z:8>> = <<1,0>>
+<<bigI:16:Big-Unsigned-Integer>> = <<1,2>>
+<<litI:16:Little-Signed-Integer>> = <<1,2>>
+```
+
 ### Ports
 
-Erlang port identifier identifies an Erlang port.
+TODO: Erlang port identifier identifies an Erlang port.
 
 ### PIDs
 
-Erlang process identifier, pid, identifies a process.
+TODO: Erlang process identifier, pid, identifies a process.
+
+### References
+
+TODO: Erlang reference
 
 ## User-defined Types
 
-```Haskell
+Hamler supports algebraic data type (ADT):
+
+```haskell
 -- type synonym
 type Name = String
 "Miles" :: Name
 "Miles" :: String
 
-newtype CInt = CInt Integer
+newtype UInt8 = UInt8 Integer
 1 :: Integer
-CInt 1 :: CInt
+UInt8 1 :: UInt8
 
 -- sum datatype
 data Color = Red | Green | Blue
@@ -274,10 +261,36 @@ Person {name = "Miles", age = 50, address = "NY"} :: Person
 
 -- generic datatype (maybe for example)
 data Maybe a = Just a | None
-data Result val err = Ok Val | Error err
+data Result val err = Ok val | Error err
 
 -- recursive datatype
 data Tree = Leaf Integer | Node Tree Tree
+```
+
+## Bindings
+
+### let
+
+```haskell
+let n = 1 + 2
+let (a, b) = (1, 2)
+```
+
+### let .. in ..
+
+```haskell
+z = let x = 3
+        y = 2 * x
+    in  x * y
+```
+
+### where
+
+```haskell
+z = x * y
+    where
+      x = 3
+      y = 5
 ```
 
 ## Functions
@@ -286,26 +299,11 @@ A function is a mapping from values of one type to values of another type.
 
 ### Function Definition and Application
 
-**Currying**
-
 ```haskell
--- uncurried
-plus :: (Integer, Integer) -> Integer
-plus (x, y) = x + y
+add :: Integer -> Integer -> Integer
+add x y = x + y
 
--- sum is the curried version of plus
-sum :: Integer -> Integer -> Integer
-sum x y = x + y
-```
-
-**Partial application**
-
-```haskell
-sum 1  2      :: Integer
-sum 1 (2 + 3) :: Integer
-
-add2 = sum 1  :: Integer -> Integer -- partially applied
-x    = add2 3 :: Integer        -- x = 5
+add 1 2
 ```
 
 ### Polymorphic Functions
@@ -329,6 +327,28 @@ ordL = zip nats letters
 -- [(0,'a'),(1,'b'),(2,'c'),(3,'d'),(4,'e'),(5,'f'),(6,'g'),(7,'h'),(8,'i'),(9,'j'),(10,'k'),(11,'l'),(12,'m'),(13,'n'),(14,'o'),(15,'p'),(16,'q'),(17,'r'),(18,'s'),(19,'t'),(20,'u'),(21,'v'),(22,'w'),(23,'x'),(24,'y'),(25,'z')]
 ```
 
+### Currying
+
+```haskell
+-- uncurried
+plus :: (Integer, Integer) -> Integer
+plus (x, y) = x + y
+
+-- sum is the curried version of plus
+sum :: Integer -> Integer -> Integer
+sum x y = x + y
+```
+
+### Partial application
+
+```haskell
+sum 1  2      :: Integer
+sum 1 (2 + 3) :: Integer
+
+add2 = sum 1  :: Integer -> Integer -- partially applied
+x    = add2 3 :: Integer        -- x = 5
+```
+
 ### High-Order Functions
 
 ```haskell
@@ -342,7 +362,7 @@ apply f x = f x
 fact n = if n == 0 then 1 else n * fact (n - 1)
 
 length []       = 0
-length (x : xs) = length xs + 1
+length [x|xs] = length xs + 1
 ```
 
 ### Lambda (Anonymous Function)
@@ -354,8 +374,6 @@ multBy n = \m -> m * n
 mean :: Integer -> Integer -> Integer
 mean = \x y -> (x + y) `div` 2  -- f = (\x -> \y -> (x + y) `div` 2)
 ```
-
-## Pattern Matching
 
 ### Pattern Matching
 
@@ -376,21 +394,7 @@ abs n | n > 0     = n
       | otherwise = -n
 ```
 
-### case .. of
-
-```haskell
-rgb = Red
-
-f = case rgb of
-      Red   -> "red"
-      Green -> "green"
-      Blue  -> "blue"
--- f has value "red"
-
-g = case rgb of Green -> "red"; _ -> "not red"
--- g has valur "not red"
-
-```
+## Expressions
 
 ### if .. then .. else
 
@@ -407,6 +411,56 @@ sign x =
       else print "zero"
 ```
 
+### case .. of
+
+```haskell
+rgb = Red
+
+f = case rgb of
+      Red   -> "red"
+      Green -> "green"
+      Blue  -> "blue"
+-- f has value "red"
+
+g = case rgb of Green -> "red"; _ -> "not red"
+-- g has valur "not red"
+
+```
+
+### List comprehensions
+
+A list comprehension consists of four types of elements: *generators*, *guards*, *local bindings*, and *targets*.
+
+```haskell
+-- examples
+[x*2 | x <- [1,2,3]]   -- [2,4,6]
+
+[x * x | x <- [1..10]] -- [1,4,9,16,25,36,49,64,81,100]
+
+-- multiple generators
+[(x,y) | x <- [1,2,3], y <- [4,5]]
+
+-- dependent generators
+[(x,y) | x <- [1..3], y <- [x..3]]
+
+-- Conditions
+even i = 0 == i % 2
+[x | x <- [1..10], even x]
+```
+
+### Enumerations, Range
+
+```haskell
+[1..10]
+--[1,2,3,4,5,6,7,8,9,10]
+
+[0, 5..100]
+-- [0,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100]
+
+['a'..'z']
+--"abcdefghijklmnopqrstuvwxyz"
+```
+
 ## Operators
 
 ### Arithmetic Operators
@@ -417,6 +471,7 @@ sign x =
 | -        | Subtract         |         |
 | *        | Multiply         |         |
 | /        | Divide           |         |
+| %        | Remain           |         |
 | div      | Integer Division | div 7 3 |
 | rem      | Remain           | rem 7 3 |
 |          |                  |         |
@@ -454,7 +509,7 @@ sign x =
 
 ## Modules
 
-A module is a compilation unit which exports datatypes, functions, and other modules.
+A module is a compilation unit which exports types, functions, type classes and other modules.
 
 ### Module Declaration and Export
 
@@ -477,7 +532,9 @@ add x y = x + y
 
 ```haskell
 -- Main
-module Main (main) where
+module Main where
+
+import Prelude
 
 main = println "Hello World"
 ```
@@ -499,21 +556,17 @@ import Data.Map as Map
 Map.get "foo" #{"foo" => "bar"}
 ```
 
-## Examples
+## Type classes
 
-### Hello World
+TODO:...
 
-```haskell
-module Example (add) where
+## Functor, Applicative and Monad
 
-add :: Integer -> Integer -> Integer
-add x y = x + y
-
-main = printLn "hello world!" ++ show add
-```
+TODO:...
 
 ## Reserved Words
 
 ```haskell
-myAtom ado as case class data derive do else false forall forallu foreign hiding import if in infix infixl infixr instance kind let module newtype of then true type where
+as case class data do else false forall foreign hiding import if in infix infixl infixr instance kind let module newtype of then true type where
 ```
+
