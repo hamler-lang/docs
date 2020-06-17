@@ -63,7 +63,7 @@ newtype Email = Email String
 
 m1 :: Map Email Integer
 m1 = empty
---This is forces we can only pass a String with a contrutor Email.
+--This is forces us to only pass a String with a contrutor Email.
 --So insert "abc" 123 m1 will fail
 ```
 
