@@ -164,7 +164,7 @@ A list is sequence of values of the same type:
 
 Erlang style maps are imported to hamler language:
 
-```Haskell
+```haskell
 -- New map, values and keys must have the same type.
 m = #{:foo => "foo", :bar => "bar"}
 
@@ -367,7 +367,7 @@ length [x|xs] = length xs + 1
 
 ### Lambda (Anonymous Function)
 
-```Haskell
+```haskell
 multBy :: Integer -> Integer -> Integer
 multBy n = \m -> m * n
 
