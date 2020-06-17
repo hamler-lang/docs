@@ -4,7 +4,9 @@
 
 ### Function Application
 
-### Patterm Matching
+### Polymorphic Functions
+
+### Pattern Matching
 
 ### Guards
 
@@ -19,6 +21,8 @@
 ### Curring
 
 ### Partial Application
+
+### Composition and Pipeline
 
 ### inflix Operator
 
