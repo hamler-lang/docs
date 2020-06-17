@@ -6,7 +6,7 @@
 
 **λE** = Lambda (**λ**) + **E**rlang VM.
 
-![hamler-logo](https://avatars2.githubusercontent.com/u/49756617?s=200&v=4)
+![hamler-logo](https://www.hamler-lang.org/images/hamler@2x.png)
 
 ### 1.2 Elixir is already there, running on Erlang VM, how does this differ?
 
