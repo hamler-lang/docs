@@ -11,8 +11,7 @@ The Hamler Data Types are mapping to Erlang Data types at compile-time as follow
 | Atom(Symbol)      | atom()                         |                                   |
 | Bool              | boolean()                      | True -> true <br />False -> false |
 | Char              | char() ??                      |                                   |
-| Int(Integer)      | integer()                      | Integer type                      |
-| Num(Number)       | number(), integer() \| float() |                                   |
+| Integer(Int)      | integer()                      | Integer type                      |
 | Float(Double)     | float()                        | Float type                        |
 | String            | "hello"                        | String is a list of character     |
 | Tuple             | tuple()                        |                                   |
