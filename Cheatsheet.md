@@ -1,8 +1,8 @@
 # Hamler Cheatsheet
 
-Hamler is a haskell-style functional programming language running on Erlang VM.
+**Hamler** is a haskell-style functional programming language running on Erlang VM.
 
-![hamler-logo](https://www.hamler-lang.org/images/hamler-logo.png)
+![hamler-logo](https://www.hamler-lang.org/images/hamler@4x.png)
 
 [ToC]
 
@@ -19,7 +19,7 @@ main = println "Hello, world!"
 
 ## Hamler REPL
 
-```shell
+```haskell
 hamler repl
 > import Data.Map as Map
 > Map.empty
@@ -201,7 +201,7 @@ name = p1.name :: String
 age = p1.age   :: Integer
 ```
 
-## Binaries
+### Binaries
 
 Binaries are imported from Erlang, which are raw byte strings.
 
@@ -231,7 +231,7 @@ TODO: Erlang reference
 
 ## User-defined Types
 
-Hamler supports algebraic data type (ADT):
+**Hamler** supports algebraic data type (ADT):
 
 ```haskell
 -- type synonym
@@ -345,7 +345,7 @@ sum x y = x + y
 sum 1  2      :: Integer
 sum 1 (2 + 3) :: Integer
 
-add2 = sum 1  :: Integer -> Integer -- partially applied
+add2 = sum 2  :: Integer -> Integer -- partially applied
 x    = add2 3 :: Integer        -- x = 5
 ```
 
@@ -375,7 +375,7 @@ mean :: Integer -> Integer -> Integer
 mean = \x y -> (x + y) `div` 2  -- f = (\x -> \y -> (x + y) `div` 2)
 ```
 
-### Pattern Matching
+### Function Pattern Matching
 
 ```haskell
 (x, y) = (1, 2)
