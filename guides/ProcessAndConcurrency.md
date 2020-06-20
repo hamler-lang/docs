@@ -2,6 +2,8 @@
 
 ## Actor Model
 
+## Message Passing
+
 ## Process and Mailbox
 
 ## Send and Receive
