@@ -4,41 +4,41 @@
 
 ## Overview
 
-The Hamler Data Types are mapping to Erlang Data types at compile-time as following tables show:
+The Hamler Data Types are mapping to Erlang Data types at compile-time. The following table shows the overview of the mappings:
 
-| Hamler Data Type  | Erlang Data Type               | Mapping Description               |
-| ----------------- | ------------------------------ | --------------------------------- |
-| Atom(Symbol)      | atom()                         |                                   |
-| Bool              | boolean()                      | true -> true <br />false -> false |
-| Char              | char()                         |                                   |
-| Integer(Int)      | integer()                      | Integer type                      |
-| Float(Double)     | float()                        | Float type                        |
-| String            | string()                       |                                   |
-| Tuple             | tuple()                        |                                   |
-| List              | list()                         |                                   |
-| Map               |                                |                                   |
-| Record            |                                |                                   |
-| Binary            | binary() \| bitstring()        |                                   |
-| Port              | port()                         | Erlang Port                       |
-| Pid               | pid()                          | Erlang Pid                        |
-| Reference(Ref)    | reference()                    | Erlang Reference                  |
+| Hamler Data Type | Erlang Data Type        | Mapping Description               |
+| ---------------- | ----------------------- | --------------------------------- |
+| Atom(Symbol)     | atom()                  |                                   |
+| Bool             | boolean()               | true -> true <br />false -> false |
+| Char             | char()                  |                                   |
+| Integer(Int)     | integer()               | Integer type                      |
+| Float(Double)    | float()                 | Float type                        |
+| String           | string()                |                                   |
+| Tuple            | tuple()                 |                                   |
+| List             | list()                  |                                   |
+| Map              | map()                   |                                   |
+| Record           | map()                   |                                   |
+| Binary           | binary() \| bitstring() |                                   |
+| Port             | port()                  | Erlang Port                       |
+| Pid              | pid()                   | Erlang Pid                        |
+| Reference(Ref)   | reference()             | Erlang Reference                  |
 
 ## Atoms Mapping
 
 **Atom** is a constant with name, which is also known as **Symbol** in other languages, such as Ruby.
 
-Hamler's **Atom** data type is imported from Erlang, but a different syntax is used.
+**Atoms** in Hamler are imported from Erlang, defined as a primitive type, but have a different syntax from Erlang.
 
-Atoms in Hamler start with a colon `:`.
+**Atoms** in Hamler start with a colon `:`
 
-Hamler:
 ```hamler
 :ok
 :error
 :the_1st_Atom
 atom("node@127.0.0.1")
 ```
-Erlang:
+**Atoms** in Erlang:
+
 ```erlang
 ok
 error
@@ -48,15 +48,17 @@ the_1st_Atom
 
 ## Booleans Mapping
 
-The syntax of **Booleans** in Hamler are the same to Erlang. The difference is that **Boolean** is a primitive type in Hamler, while `ture` and `false` are atoms in Erlang.
+The syntax of **Booleans** in Hamler is the same as Erlang. The difference is that **Boolean** is a primitive type in Hamler, while `true` and `false` are atoms in Erlang.
 
-Hamler:
+**Booleans** in Hamler:
+
 ```hamler
 true
 false
 ```
 
-Erlang:
+**Booleans** in Erlang:
+
 ```hamler
 true
 false
@@ -64,9 +66,9 @@ false
 
 ## Chars Mapping
 
-**Chars** in hamler are also utf-8 unicode characters but with different syntax from erlang.
+**Chars** in Hamler are also UTF-8 Unicode characters but with different syntax from Erlang.
 
-**Chars** in hamer are enclosed in single quotes, which are similar to most programming languages.
+**Chars** in Hamer are enclosed in single quotes, which are similar to most programming languages.
 
 ```hamler
 'a'
@@ -74,7 +76,8 @@ false
 'の'
 ```
 
-**Chars** in erlang is started with '$':
+**Chars** in Erlang are started with '$':
+
 ```hamler
 $a
 $b
@@ -83,11 +86,12 @@ $の
 
 ## Integers Mapping
 
-**Integers** in hamler are the same to erlang, with unlimited size. Hamler defines `Int` as an alias for `Integer`.
+**Integers** in Hamler are the same as Erlang, with unlimited size. Hamler defines `Int` as an alias for `Integer`.
 
-Binary, octal and hex integers in hamler have a different syntax than erlang.
+Binary, octal, and hex integers in Hamler have a different syntax than Erlang.
 
 **Integers** in Hamler:
+
 ```hamler
 1, 2, -10
 -- binary
@@ -98,7 +102,8 @@ Binary, octal and hex integers in hamler have a different syntax than erlang.
 0x1, 0X1, 0x2a, 0X2A, 0xff
 ```
 
-Erlang:
+**Integers** in Erlang:
+
 ```erlang
 1, 2, -10
 -- binary
@@ -111,9 +116,10 @@ Erlang:
 
 ## Floats Mapping
 
-**Floats** in hamler are the same to erlang, which are also defined as **Doubles** in other languages.
+**Floats** in Hamler are the same as Erlang, which is also known as **Doubles** in other languages.
 
 **Floats** in Hamler and Erlang:
+
 ```erlang
 1.0, 1.0e10
 2.3
@@ -123,9 +129,10 @@ Erlang:
 
 ## Strings Mapping
 
-**Strings** in both Hamler and Erlang are list of UTF-8 characters.
+**Strings** in both Hamler and Erlang are a list of UTF-8 characters.
 
 **Strings** in Hamler and Erlang:
+
 ```erlang
 "Hello, World!"
 "你好，世界"
@@ -134,14 +141,16 @@ Erlang:
 
 ## Tuples Mapping
 
-**Tuples** are defined as primitive data types in Hamler, and compiled to Erlang tuples.
+**Tuples** are defined as primitive data types in Hamler and compiled to Erlang tuples.
 
 The differences from Erlang are as below:
 
-1. **Tuples** in Hamler are enclosed within parentheses, while **Tuples** in Erlang are enclosed in braces.
-2. The maximum length of **Tuples** in hamler is 7, while no limit in erlang.
+- **Tuples** in Hamler are enclosed within parentheses, while **Tuples** in Erlang are enclosed in braces.
+
+- The maximum length of **Tuples** in Hamler is 7, while no limit in Erlang.
 
 **Tuples** in Hamler:
+
 ```hamler
 (1, "a", true)
 (1, "a")
@@ -153,6 +162,7 @@ snd (1, 'a') :: Char    -- 'a'
 ```
 
 **Tuples** in Erlang:
+
 ```erlang
 {1, "a", true}
 {1, "a"}
@@ -162,9 +172,10 @@ snd (1, 'a') :: Char    -- 'a'
 
 ## Lists Mapping
 
-**Lists** in Hamler are the same to Erlang.
+**Lists** in Hamler are the same as Erlang, which is a list of UTF-8 Unicode characters.
 
 **Lists** in Hamler:
+
 ```hamler
 {-- List --}
 [] -- empty list
@@ -206,13 +217,14 @@ Hamler provides an Enum or Range syntax to help construct lists.
 
 ## Maps Mapping
 
-The syntax of **Maps** in Hamler is same to Erlang. The differences are listed below:
+The syntax of **Maps** in Hamler is the same as Erlang. The differences are listed below:
 
 - The keys of a Map should have the same type in Hamler;
 - The values of a Map should have the same type in Hamler;
 - The syntax `#{k := v}` is only used for map pattern matching.
 
 **Maps** in Hamler:
+
 ```hamler
 -- New map, values and keys must have the same type.
 m = #{:foo => "foo", :bar => "bar"}
@@ -236,9 +248,10 @@ B  %% "bar"
 
 ## Records Mapping
 
-**Records** in Hamler are compiled to Erlang maps.
+**Records** in Hamler are mapping to Erlang **Maps** at compile-time.
 
 **Records** in Hamler:
+
 ```hamler
 type Person = {name :: String, age :: Integer}
 john = {name = "John", age = 12}
@@ -275,6 +288,7 @@ Ei = Value |
 ```
 
 **Binaries** in Hamler:
+
 ```hamler
 <<127,0,0,1>>
 <<"ABC">>
@@ -298,55 +312,55 @@ Ei = Value |
 <<LitI:16/little-signed-integer>> = <<1,2>>
 ```
 
-## Port Mapping
+## Ports Mapping
 
-Intro:...
+The **Port** data type in Hamler is foreign imported from Erlang.
+
+## Pids Mapping
+
+The **Pid** data type in Hamler is foreign imported from Erlang. **Pid** in Erlang is a unique identifier of the Erlang lightweight process.
+
+## References Mapping
+
+The **Reference** data type in Hamler is a foreign imported data type from Erlang.
+
+Create a **Reference** in Hamler:
+```hamler
+import Data.Ref
+makeRef
+```
+
+## User-defined data types Mapping
+
+The constructors of Sum/Product algebraic data types are mapping to tuples in Erlang at compile-time.
 
 Hamler:
 ```hamler
-```
-
-Erlang:
-```erlang
-```
-
-## Pid Mapping
-
-Intro:...
-
-Hamler:
-```hamler
-```
-
-Erlang:
-```erlang
-```
-
-## Reference(Ref) Mapping
-
-Intro:...
-
-Hamler:
-```hamler
-```
-
-Erlang:
-```erlang
-```
-
-## User-defined data Mapping
-
-### Sum datatypes
-
-```hamler
+-- Sum datatype
 data Color = Red | Green | Blue
-```
+Red   -- {'Red'}
+Green -- {'Green'}
+Blue  -- {'Blue'}
 
-### Product datatypes
-
-```
+-- Product datatype
 data Pair = Pair Integer Integer
+Pair 3 4 -- {'Pair',3,4}
+
+-- Maybe
+data Maybe a = Just a | Nothing
+Nothing -- {'Nothing'}
+Just 5  -- {'Just',5}
 ```
 
-### Record product datatypes
+Erlang:
+```erlang
+{'Red'}   %% Red
+{'Green'} %% Green
+{'Blue'}  %% Blue
+
+{'Pair',3,4} %% Pair 3 4
+
+{'Nothing'} %% Nothing
+{'Just',5}  %% Just 5
+```
 
