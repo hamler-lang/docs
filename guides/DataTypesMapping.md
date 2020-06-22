@@ -285,7 +285,7 @@ The **Bit Syntax** in Hamler is a bit different from Erlang, that '/' is replace
 Ei ::= Value 
     |  Value : Size 
     |  Value : TypeSpecifierList 
-    |  Value : Size:TypeSpecifierList
+    |  Value : Size : TypeSpecifierList
 ```
 
 **Binaries** in Hamler:
