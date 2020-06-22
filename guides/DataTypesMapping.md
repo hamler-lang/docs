@@ -272,9 +272,9 @@ Compiled to Erlang's Maps:
 <<E1,...,En>>
           
 Ei ::= Value 
-     | Value : Size 
-     | Value / TypeSpecifierList 
-     | Value : Size / TypeSpecifierList
+     | Value ":" Size 
+     | Value "/" TypeSpecifierList 
+     | Value ":" Size "/" TypeSpecifierList
 ```
 
 The **Bit Syntax** in Hamler is a bit different from Erlang, that '/' is replaced with ':':
@@ -283,9 +283,9 @@ The **Bit Syntax** in Hamler is a bit different from Erlang, that '/' is replace
 <<>>
 <<E1,...,En>>
 Ei ::= Value 
-    |  Value : Size 
-    |  Value : TypeSpecifierList 
-    |  Value : Size : TypeSpecifierList
+    |  Value ":" Size 
+    |  Value ":" TypeSpecifierList 
+    |  Value ":" Size ":" TypeSpecifierList
 ```
 
 **Binaries** in Hamler:

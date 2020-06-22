@@ -2,11 +2,11 @@
 
 ## Overview
 
-Hamler has a very different syntax from Erlang, although the Hamler source code compiled into CoreErlang. Erlang's syntax comes primarily from Prolog, but Hamler's comes from Haskell and Standard ML.
+Hamler has a very different syntax from Erlang, although Hamler source's code is compiled into CoreErlang. Erlang's syntax comes primarily from Prolog, while Hamler's comes from Haskell and Standard ML.
 
 ## Variables
 
-Though variable names in both Hamler and Erlang are composed of letters, digits, and underscores, variables in Hamler begin with a lowercase letter, while Erlang variables begin with a capital letter.
+Variable names in both Hamler and Erlang are composed of letters, digits, and underscores. However, variables in Hamler begin with a lowercase letter, while Erlang's variables begin with a capital letter.
 
 Hamler:
 ```hamler
@@ -38,7 +38,7 @@ Comments in Erlang start with `%`:
 
 ## Functions
 
-### Function Defination and Application
+### Function Definition and Application
 
 Hamler:
 ```hamler
@@ -109,7 +109,7 @@ f(_) -> "Zero".
 
 ## List Comprehensions
 
-List comprehensions in Erlang use `||` as a separator between expression and generators, but `|' is used in Hamler.
+List comprehensions in Erlang use `||` as a separator between expression and generators, but `|` is used in Hamler.
 
 Hamler:
 ```hamler
@@ -145,7 +145,7 @@ even(I) -> 0 == (I rem 2).
 
 ### case .. of
 
-The `case` expression is the same as Haskell.
+The `case` expression in Hamler is the same as Haskell.
 
 Hamler:
 ```hamler
