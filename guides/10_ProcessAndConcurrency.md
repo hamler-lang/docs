@@ -2,9 +2,9 @@
 
 ## About Actor Model
 
-## Message Passing
-
 ## Process and Mailbox
+
+## Message Passing
 
 ## Send
 
