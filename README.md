@@ -6,7 +6,7 @@
 
 ## [**Guides**](guides/)
 
-01. [**Why Hamler**](01_WhyHamler.md)
+01. [**Why Hamler?**](01_WhyHamler.md)
   - [What's Hamler](guides/01_WhyHamler.md#whats-hamler)
   - [Prequisitcs](guides/01_WhyHamler.md#prequisitcs)
   - [Haskell Style](guides/01_WhyHamler.md#haskell-style)
@@ -61,6 +61,8 @@
 
 08. [**Foreign Function Interface**](guides/08_ForeignFunctionInterface.md)
   - [Use Erlang Code From Hamler](guides/08_ForeignFunctionInterface.md#use-erlang-code-from-hamler)
+  - [Foreign Import](guides/08_ForeignFunctionInterface.md#foreign-import)
+  - [FFI Functions](guides/08_ForeignFunctionInterface.md#ffi-functions)
 
 09. [**Data Types Mapping**](guides/09_DataTypesMapping.md)
   - [Overview](guides/09_DataTypesMapping.md#overview)
