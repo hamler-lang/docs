@@ -6,7 +6,7 @@
 
 ## [**Guides**](guides/)
 
-01. [**Why Hamler**](01_WhyHamler.md)
+01. [**Why Hamler?**](01_WhyHamler.md)
   - [What's Hamler](guides/01_WhyHamler.md#whats-hamler)
   - [Prequisitcs](guides/01_WhyHamler.md#prequisitcs)
   - [Haskell Style](guides/01_WhyHamler.md#haskell-style)
