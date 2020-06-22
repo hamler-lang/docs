@@ -2,13 +2,11 @@
 
 [Toc]
 
-## Overview
+
+
+## Foreign Import Erlang Code From Hamler 
 
 Since Hamler compiles to CoreErlang, it makes sense that there should be some feature allow you to call Erlang code from Hamler, This is a brief notes about using Erlang code from Hamler. One thing to keep in mind that though you can type foreign functions, hamler has no way to check whether you have given the right type signature, so be careful and remember to keep impure code wrapped in IO.
-
-
-
-## Use Erlang Code From Hamler
 
 FFI is a powerful feature, so you have to know what you are doing.
 
