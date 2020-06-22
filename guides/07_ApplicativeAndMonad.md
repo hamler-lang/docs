@@ -4,7 +4,11 @@
 
 In this chapter, we are going to look at two very important type class, Applicative Functor and Monad.
 
-**Applicative**
+## Functor
+
+TODO:...
+
+## Applicative
 
 Let's start with how the Applicative class is defined. From the definition, we can see that Applicatives they are Functors with two more operations, which is pure and apply. `pure` wraps some value to make an applicative functor. `apply` is a bit more complicated.
 
@@ -33,9 +37,7 @@ instance Applicative [] where
 
 Let's have a closer look at instance `Applicative []` , we can see that every `f` in the list will get applied to all the elements in the list.  So with  `(+) <$> [1,2] <*> [3,4,5]`, we will have a non-deterministic computation on `(+)`.
 
-**Monad**
-
-
+## Monad
 
 ```haskell
 class Applicative m => Monad m where
@@ -43,9 +45,7 @@ class Applicative m => Monad m where
   return :: forall a. a -> m a
 ```
 
-
-
-**`lift`ing**
+## `lift`ing
 
 ```Haskell
 liftA1 :: forall a b f. Applicative f => (a -> b) -> f a -> f b

@@ -13,8 +13,6 @@ However, from all the experience writing Erlang, we believe that the following f
 
 Now all the features are avaliable in the Hamler programming language.
 
----
-
 ## What's Hamler
 
 `Hamler`  A Haskell-style functional programming language running on Erlang VM.
@@ -23,19 +21,11 @@ It is a strongly-typed language with compile-time typechecking and built-in supp
 
 Cool, let's quit the bragging and kick off.
 
-
-
----
-
 ## Prerequisites
 
 - Basic Programming Skills
 
 - It will be good to have some experience with Haskell or Erlang (but this is not essential)
-
-
-
----
 
 ## Haskell Style
 
@@ -58,17 +48,9 @@ mergesort xs = let (as, bs) = splitAt (length xs / 2) xs
                in merge (mergesort as) (mergesort bs)
 ```
 
-
-
----
-
 ## Type Checking
 
 Hamler is strongly typed with compile type checking. So at compile time we can ensure that our program is type-safe, and this can help programmers to avoid silly mistakes like adding a string and an integer.
-
-
-
----
 
 ## Erlang and Concurrency
 
@@ -102,6 +84,4 @@ loop s = do
   x <- receive
   s1 <- dealMessage s x
   loop s1
-
 ```
-
