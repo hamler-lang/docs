@@ -6,22 +6,22 @@
 
 The Hamler Data Types are mapping to Erlang Data types at compile-time. The following table shows the overview of the mappings:
 
-| Hamler Data Type | Erlang Data Type        | Mapping Description               |
-| ---------------- | ----------------------- | --------------------------------- |
-| Atom(Symbol)     | atom()                  |                                   |
-| Bool             | boolean()               | true -> true <br />false -> false |
-| Char             | char()                  |                                   |
-| Integer(Int)     | integer()               | Integer type                      |
-| Float(Double)    | float()                 | Float type                        |
-| String           | string()                |                                   |
-| Tuple            | tuple()                 |                                   |
-| List             | list()                  |                                   |
-| Map              | map()                   |                                   |
-| Record           | map()                   |                                   |
-| Binary           | binary() \| bitstring() |                                   |
-| Port             | port()                  | Erlang Port                       |
-| Pid              | pid()                   | Erlang Pid                        |
-| Reference(Ref)   | reference()             | Erlang Reference                  |
+| Hamler Data Type     | Erlang Data Type        | Mapping Description               |
+| -------------------- | ----------------------- | --------------------------------- |
+| Atom(Symbol in Ruby) | atom()                  |                                   |
+| Bool                 | boolean()               | true -> true <br />false -> false |
+| Char                 | char()                  |                                   |
+| Integer(Int)         | integer()               | Integer type                      |
+| Float(Double)        | float()                 | Float type                        |
+| String               | string()                |                                   |
+| Tuple                | tuple()                 |                                   |
+| List                 | list()                  |                                   |
+| Map                  | map()                   |                                   |
+| Record               | map()                   |                                   |
+| Binary               | binary() \| bitstring() |                                   |
+| Port                 | port()                  | Erlang Port                       |
+| Pid                  | pid()                   | Erlang Pid                        |
+| Reference(Ref)       | reference()             | Erlang Reference                  |
 
 ## Atoms Mapping
 
@@ -270,10 +270,11 @@ Compiled to Erlang's Maps:
 ```erlang
 <<>>
 <<E1,...,En>>
-Ei = Value |
-     Value:Size |
-     Value/TypeSpecifierList |
-     Value:Size/TypeSpecifierList
+          
+Ei ::= Value 
+     | Value : Size 
+     | Value / TypeSpecifierList 
+     | Value : Size / TypeSpecifierList
 ```
 
 The **Bit Syntax** in Hamler is a bit different from Erlang, that '/' is replaced with ':':
@@ -281,10 +282,10 @@ The **Bit Syntax** in Hamler is a bit different from Erlang, that '/' is replace
 ```hamler
 <<>>
 <<E1,...,En>>
-Ei = Value |
-     Value:Size |
-     Value:TypeSpecifierList |
-     Value:Size:TypeSpecifierList
+Ei ::= Value 
+    |  Value : Size 
+    |  Value : TypeSpecifierList 
+    |  Value : Size : TypeSpecifierList
 ```
 
 **Binaries** in Hamler:
