@@ -1,17 +1,20 @@
 # Process and Concurrency
 
-## Actor Model
+## About Actor Model
 
 ## Message Passing
 
 ## Process and Mailbox
 
-## Send and Receive
+## Send
+
+## Receive
 
 ## Receive .. after
 
 ## Selective Receive
 
-## Link and Monitor
+## Link
 
+## Monitor
 
