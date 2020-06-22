@@ -2,6 +2,12 @@
 
 [Toc]
 
+## Overview
+
+Since Hamler compiles to CoreErlang, it makes sense that there should be some feature allow you to call Erlang code from Hamler, This is a brief notes about using Erlang code from Hamler. One thing to keep in mind that though you can type foreign functions, hamler has no way to check whether you have given the right type signature, so be careful and remember to keep impure code wrapped in IO.
+
+
+
 ## Use Erlang Code From Hamler
 
 FFI is a powerful feature, so you have to know what you are doing.
@@ -33,7 +39,11 @@ The nice thing is that we can give `eqCharImpl` a type, however there is no way 
 foreign import readFile :: String -> IO String
 ```
 
-We have also provide some nice functions allow you to "directly" use Erlang library:
+
+
+## FFI Functions
+
+We have also provided some nice functions allowing you to "directly" use Erlang library:
 
 ```haskell
 --if we want to use sin function from math module in Erlang
@@ -43,5 +53,5 @@ sin = ffi1 :math :sin
 -- foreign import ffi1 :: forall a b. Atom -> Atom -> a -> b
 ```
 
-Where `ffi1` is a function takes in two atoms to locate the function in Erlang lib, and the number 1 means this function needs 1 argument.
+Where `ffi1` is a function takes in two atoms to locate the function in Erlang lib, and the number 1 means this function needs 1 argument. There are more in the lib.
 
