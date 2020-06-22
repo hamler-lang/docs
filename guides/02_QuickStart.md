@@ -2,9 +2,7 @@
 
 [ToC]
 
----
-
-## Install
+## Installation
 
 **Homebrew(macOS)**
 
@@ -43,10 +41,6 @@ $ brew install hamler
    $ sudo cp -rv ebin /usr/local/lib/hamler/
    ```
 
-
-
----
-
 ## Hamler Interpreter
 
 ```shell
@@ -71,10 +65,6 @@ $ hamler repl
 > values = Map.values m
 ```
 
-
-
----
-
 ## Create A Project
 
 ```shell
@@ -84,10 +74,6 @@ $ hamler init
 $ make
 $ make run
 ```
-
-
-
----
 
 ## Module structure
 
@@ -118,21 +104,16 @@ The syntax for import in Hamler is `import <module name>`. This has to be done b
 ```haskell
 import Data.List       --Modules are imported using their full names
 import Data.Maybe (isJust, isNothing)   -- We can choose which functions to import
-import Data.Funtion as F     
+import Data.Funtion as F
 -- We can deal with ambiguity by adding an alias. This means we need to add "F." before every functions that are exposed from Data.Function to specify that it is from this module
 import Prelude hiding (fst)  -- The Prelude is imported by default. By hiding `fst`, we can define our own version.
 ```
+## Hello, Hamler!
 
-
-
----
-
-## Hello, Hamler !
-
-```Haskell
+```haskell
 module Main where
 
-import System.IO
+import Prelude
 
 main = print "Hello, World!"
 ```

@@ -2,9 +2,7 @@
 
 [ToC]
 
----
-
-## Intro
+## Introduction
 
 Resursion is an important technique in programming, especially in functional programming.
 
@@ -21,10 +19,6 @@ fib 1 = 1
 fib n = fib (n - 1) + fib (n - 2)
 ```
 
-
-
----
-
 ## Recursions on more complicated datatypes
 
 Definition of the datatype list is recursive. So,when we define a function for such datatypes, it comes naturally to define the function recursively.
@@ -34,10 +28,6 @@ length :: forall a . [a] -> Integer
 length  []    = 0
 length (x:xs) = 1 + length xs
 ```
-
-
-
----
 
 ## Map, filter and fold
 
@@ -73,10 +63,6 @@ Here are some examples on the usage.
 15
 ```
 
-
-
----
-
 ## List Comprehensions
 
 There is an alternative way to define map and filter, which is to use list comprehension.
@@ -97,10 +83,6 @@ With list comprehension we can also do things like:
 [1,2,3,4,5,6,7,8,9,10]
 
 ```
-
-
-
----
 
 ## Higher Order Functions
 

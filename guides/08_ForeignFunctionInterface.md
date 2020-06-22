@@ -1,12 +1,14 @@
 # Foreign Function Interface
 
+[Toc]
+
 ## Use Erlang Code From Hamler
 
 FFI is a powerful feature, so you have to know what you are doing.
 
 There are lot of examples in the [lib](https://github.com/hamler-lang/hamler/tree/master/lib) directory, from which you can easily discover that Erlang code and Hamler code are in the same directory with same filename, when defining a foreign function.
 
-For example, in `Data.Eq` we defined `Eq` instances for different types. These are done with Erlang Code. 
+For example, in `Data.Eq` we defined `Eq` instances for different types. These are done with Erlang Code.
 
 In Eq.erl we have:
 
@@ -18,7 +20,7 @@ This is a function we defined to compare two `Char`s.
 
 In Eq we can easily import this with:
 
-```Haskell
+```haskell
 instance Eq Char where
   eq = eqCharImpl
 
@@ -30,8 +32,6 @@ The nice thing is that we can give `eqCharImpl` a type, however there is no way 
 ```haskell
 foreign import readFile :: String -> IO String
 ```
-
-
 
 We have also provide some nice functions allow you to "directly" use Erlang library:
 

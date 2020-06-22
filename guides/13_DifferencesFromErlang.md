@@ -1,5 +1,7 @@
 # Differences from Erlang
 
+[Toc]
+
 ## Overview
 
 Hamler has a very different syntax from Erlang, although Hamler source's code is compiled into CoreErlang. Erlang's syntax comes primarily from Prolog, while Hamler's comes from Haskell and Standard ML.

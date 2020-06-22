@@ -2,8 +2,6 @@
 
 [ToC]
 
----
-
 ## Algebraic Data Types
 
 Using algebraic data types we are saying some datatype can be one of the many things, distinguished by and identified by what is called a constructor.
@@ -26,32 +24,6 @@ data [a] = a : [a]
 -}
 ```
 
-
-
----
-
-## Map
-
-Map is the `Map` from Erlang. `Map k v` is the type of a Map.
-
-We can construct a Map like this:
-
-```Haskell
-m1 :: Map String Integer
-m1 = #{"Hello" => 5, "World" => 17}  
-
-> lookup m1 "Hello"
-Just  5
-
-> insert "!" 0 m1
-#{"Hello" => 5, "World" => 17, "!" => 0}
-
-```
-
-
-
----
-
 ## Newtypes
 
 `newtype`s are used to distinguish two types which have have the same type of value but different units/meanings.
@@ -67,13 +39,7 @@ m1 = empty
 --So insert "abc" 123 m1 will fail
 ```
 
-
-
----
-
 ## Simple Pattern Matching
-
-
 
 ```haskell
 fib 0 = 1
@@ -81,40 +47,22 @@ fib 1 = 1
 fib x = fib (x - 1) + fib (x - 2)
 ```
 
-
-
----
-
 ## Guards
-
-
 
 ```haskell
 max x y | x > y     = x
         | otherwise = y
 ```
 
-
-
----
-
 ## List Patterns
 
-
-
-```Haskell
-isEmpty :: forall a.[a] -> Boolean
-isEmpty  []      = true
-isEmpty (x : xs) = false
+```haskell
+isEmpty :: forall a. [a] -> Boolean
+isEmpty []     = true
+isEmpty [x|xs] = false
 ```
 
-
-
----
-
 ## Record Patterns
-
-
 
 ```haskell
 showPerson :: { firstName :: Name, lastName :: Name } -> Name
@@ -127,9 +75,22 @@ showPerson { firstName: x, lastName: y } = y <> ", " <> x
 "Freeman, Phil"
 ```
 
+## Maps
 
+Map is the `Map` from Erlang. `Map k v` is the type of a Map.
 
----
+We can construct a Map like this:
+
+```haskell
+m1 :: Map String Integer
+m1 = #{"Hello" => 5, "World" => 17}
+
+> lookup m1 "Hello"
+Just  5
+
+> insert "!" 0 m1
+#{"Hello" => 5, "World" => 17, "!" => 0}
+```
 
 ## Map Patterns
 
@@ -139,12 +100,7 @@ We can also pattern match on `Map`s, and this is very similar to `Record`s, exce
 getID :: Map String Integer -> Maybe Integer
 getID #{ "Wang":= x, "Thomas" := y, "Leeming" := z } = Just x
 getID _                                              = Nothing
-
 ```
-
-
-
----
 
 ## Binary Patterns
 
@@ -157,10 +113,6 @@ getA _                                                               = Nothing
 ```
 
 `Big` and `Little` means the endianess in the part we need. `Integer` or `Binary` is the type we will give to after we extract the segment. The number of bits of the segment depends on the size of the segment we need and the type we assign. If they type we assign is an `Integer` then we get exact the same number of the `size` of bits, which is required to be evenly divisible by 8. If it is a `Binary` we want, it will need 8 times the size of bits.
-
-
-
----
 
 ## Case Expressions
 

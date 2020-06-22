@@ -1,10 +1,6 @@
-
-
 # Basic Types, Functions and Operators
 
 [ToC]
-
----
 
 ## Simple Types
 
@@ -12,7 +8,7 @@ Hamler is strongly typed, and has a powerful static type system. Let's start wit
 
 **Boolean**
 
-```Haskell
+```haskell
 true :: Boolean
 false :: Boolean
 ```
@@ -21,9 +17,9 @@ false :: Boolean
 
 Hamler has Integer and Float, and since they have different types so they can't be mixed.
 
-```Haskell
+```haskell
 --Integer
-1 :: Int
+1 :: Integer
 
 --Float
 0.1 :: Float
@@ -42,7 +38,7 @@ Atom is probably more familiar to Erlang user. It is  a literal, a constant with
 
 In Hamler `String` is just a list of `Char`
 
-```Haskell
+```haskell
 "Hello World" :: String  -- ['H','e','l','l','o',',','W','o','r','l','d']
 ```
 
@@ -54,10 +50,6 @@ This is the very unique datatype exists in Erlang, and notes for Haskell users `
 <<1,2,3:8,4:16,5,"abcdefg">> :: Binary
 ```
 
-
-
----
-
 ## Operators
 
 | Operator | Meaning                |      | Operator | Meaning               |
@@ -68,10 +60,6 @@ This is the very unique datatype exists in Erlang, and notes for Haskell users `
 | /        | Numeric division (div) |      | >        | Greater than          |
 | %        | Remainder              |      | >=       | Greater than or equal |
 | &&       | Boolean AND            |      | \|\|     | Boolean OR            |
-
-
-
----
 
 ## Functions
 
@@ -108,7 +96,7 @@ plus x y = x + y
 
 **Partial Application**
 
-```Haskell
+```haskell
 -- plus :: Integer -> (Integer -> Integer) This is one of the example of higher order functions
 >:t plus 2
 plus 2:: Integer -> Integer
@@ -117,42 +105,34 @@ plus 2:: Integer -> Integer
 5
 ```
 
-
-
----
-
 ## Quantified Types
 
 They are also known as **polymorhphic types**.
 
-```Haskell
+```haskell
 > :type id
 id :: forall a. a -> a
 ```
 
 The key word `forall`indicates that `id` is univerally quantified, meaning that `id` can be applied to any type.
 
-```Haskell
+```haskell
 > id 1
 1
 ```
 
 A more complicated example is `flip`. `flip`is also a [higher-order function](05_HigherOrderFunctionsAndRecursions.md), which will be explained in the later chapter.
 
-```Haskell
+```haskell
 > :type flip
 forall a b c. (a -> b -> c) - > b -> a -> c
 ```
-
-
-
----
 
 ## Notes On Indentations
 
 Like all ML Language Family, Hamler is indentation sensitive. Any declaration in the same block should have the same level of indentation. In the case of a declaration spans more than one line, the other lines have to be intended past the first line.
 
-```Haskell
+```haskell
 flip x f = f
 x                   -- NOT OKAY, Hamler will see x as a seperate declaration
 
@@ -160,7 +140,7 @@ flip f x = f
     x               -- OKAY, but not recommended
 ```
 
-**`Let` and `Where` Block**
+**`Let` and `Where` Bindings**
 
 Keywords such as Let and Where introduces a new block, where further indentation is needed.
 
@@ -172,28 +152,20 @@ distance x y = sqrt z
     y' = y * y
 ```
 
-
-
----
-
 ## Type Synonym
 
 Type synonym can be used to simplify a long type name to make code more readable.
 
-```Haskell
+```haskell
 >:i String
 type String = [Char]
 ```
 
 Or you can define you own synonym name or a record.
 
+## Records
 
-
----
-
-## Record
-
-```Haskell
+```haskell
 type Name = String
 
 type Person =

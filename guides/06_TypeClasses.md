@@ -1,12 +1,8 @@
-
-
 # Type Class
 
 [ToC]
 
----
-
-## Intro
+## Introduction
 
 A type class defines some types related by their operations. This is saying that typeclasses are usually defined in terms of those operations, and these operations group those type together.
 
@@ -14,7 +10,7 @@ For example, we can put all types that can be converted to a `String` in the sam
 
 We can introduce this `Show` type class by:
 
-```Haskell
+```haskell
 class Show a where
   show :: a -> String
 ```
@@ -29,10 +25,6 @@ instance Show Boolean where
   show true = "true"
   show false = "false"
 ```
-
-
-
----
 
 ## Functor
 
@@ -53,11 +45,7 @@ instance Functor [] where
   map f (x:xs) = f x : map f xs
 ```
 
-
-
----
-
-## Other common type classes
+## Common type classes
 
 ```haskell
 class Eq a where
@@ -74,3 +62,4 @@ class Foldable f where
 class Semigroup a where
   append :: a -> a -> a
 ```
+
