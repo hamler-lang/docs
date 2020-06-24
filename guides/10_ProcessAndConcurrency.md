@@ -2,11 +2,13 @@
 
 [ToC]
 
-## Actor Model
+## About Actor Model
 
-## Process and Mailbox
+## Message Passing Concurrency
 
-## Message Passing
+## Erlang Process and Mailbox
+
+## Spawn
 
 ## Send
 
