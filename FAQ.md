@@ -18,7 +18,7 @@
 
 3. The design of **Hamler** compiler is also different from **Elixir**. **Hamler** source code is compiled to CoreErlang, while **Elixir** code is compiled to Erlang AST.
 
-### 1.3 What are the differences between Hamler and Puerl?
+### 1.3 What are the differences between Hamler and Purerl?
 
 **Purerl** is a backend of PureScript language, which translates PureScript to Erlang source code.
 
@@ -65,4 +65,3 @@ IDE support, such as Vim, Emacs and VSCode, is still at the planning stage.
 No. Hamler v0.1 is far from being used in product applications. We are planning to introduce Hamler 1.0 in [**EMQ X**][EmqxGithub] v7.0 release.
 
 [emqxGithub]: https://github.com/emqx/
-
