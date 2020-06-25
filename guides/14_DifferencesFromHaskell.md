@@ -70,7 +70,7 @@ Hamler do not allow orphan instance.
 
 ### No `>>`  operator
 
-We prefer not to add (>>) for now, because the key word >> is reserved for binary syntax. We choose not to put a lot of operators foe now. If there are needs, defining your own operator is allowed.
+We prefer not to add (>>) for now, because the key word >> is reserved for binary syntax. We choose not to put a lot of operators for now. If there are needs, defining your own operator is allowed.
 
 ### Define Operators
 
