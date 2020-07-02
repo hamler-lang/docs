@@ -68,7 +68,7 @@ false
 
 **Chars** in Hamler are also UTF-8 Unicode characters but with different syntax from Erlang.
 
-**Chars** in Hamer are enclosed in single quotes, which are similar to most programming languages.
+**Chars** in Hamler are enclosed in single quotes, which is similar to most programming languages.
 
 ```hamler
 'a'
@@ -76,7 +76,7 @@ false
 'の'
 ```
 
-**Chars** in Erlang are started with '$':
+**Chars** in Erlang start with '$':
 
 ```hamler
 $a
@@ -116,7 +116,7 @@ Binary, octal, and hex integers in Hamler have a different syntax than Erlang.
 
 ## Floats Mapping
 
-**Floats** in Hamler are the same as Erlang, which is also known as **Doubles** in other languages.
+**Floats** in Hamler are the same as Erlang, which are also known as **Doubles** in other languages.
 
 **Floats** in Hamler and Erlang:
 
@@ -147,7 +147,7 @@ The differences from Erlang are as below:
 
 - **Tuples** in Hamler are enclosed within parentheses, while **Tuples** in Erlang are enclosed in braces.
 
-- The maximum length of **Tuples** in Hamler is 7, while no limit in Erlang.
+- The maximum length of **Tuples** in Hamler is 7, while there is no limit in Erlang.
 
 **Tuples** in Hamler:
 
@@ -172,7 +172,7 @@ snd (1, 'a') :: Char    -- 'a'
 
 ## Lists Mapping
 
-**Lists** in Hamler are the same as Erlang, which is a list of UTF-8 Unicode characters.
+**Lists** in Hamler are the same as in Erlang.
 
 **Lists** in Hamler:
 
@@ -205,7 +205,7 @@ snd (1, 'a') :: Char    -- 'a'
 
 ## Enum, Range
 
-Hamler provides an Enum or Range syntax to help construct lists.
+Hamler provides an enumeration or range syntax to help construct lists.
 
 ```hamler
 [1..10] --[1,2,3,4,5,6,7,8,9,10]
@@ -219,8 +219,8 @@ Hamler provides an Enum or Range syntax to help construct lists.
 
 The syntax of **Maps** in Hamler is the same as Erlang. The differences are listed below:
 
-- The keys of a Map should have the same type in Hamler;
-- The values of a Map should have the same type in Hamler;
+- The keys of a Map must have the same type in Hamler;
+- The values of a Map must have the same type in Hamler;
 - The syntax `#{k := v}` is only used for map pattern matching.
 
 **Maps** in Hamler:
