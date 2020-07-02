@@ -23,13 +23,13 @@ $ brew install hamler
 
    Stack tutoriall https://docs.haskellstack.org/en/stable/install_and_upgrade/
 
-3. Clone from the git repo
+3. Clone from the Git repo
 
    ```shell
    $ git clone https://github.com/hamler-lang/hamler.git
    ```
 
-4. Install hamler
+4. Install Hamler
 
    ```shell
    $ cd hamler
@@ -77,7 +77,7 @@ $ make run
 
 ## Module structure
 
-A module is simply a bunch of related functions, types and type classes. This makes a program a collection of modules. This helps organize your code and make reuse some of the code easier.
+A module is simply a bunch of related functions, types and type classes. This makes a program a collection of modules. This helps organize your code and makes reusing some of the code easier.
 
 ### Module header
 
@@ -87,8 +87,8 @@ This how we declare a new module and specify which of the functions or types are
 
 ```haskell
 module Hello (greet, farewell) where
-{-the module name can be a word or words seperated by '.',
-  in this case i it is just "Hello"-}
+{- the module name can be a word or words separated by '.';
+  in this case it is just "Hello" -}
 
 greet :: String -> String
 greet n = "Hello " ++ n
@@ -99,13 +99,13 @@ farewell n = "Bye " ++ n
 
 **Module import**
 
-The syntax for import in Hamler is `import <module name>`. This has to be done before defining any functions. One module can import as many as modules if you wish, but there could be ambiguitywhen there are two things with the same name.
+The syntax for import in Hamler is `import <module name>`. This has to be done before defining any functions. One module can import as many as modules you wish, but there could be ambiguity when there are two things with the same name.
 
 ```haskell
 import Data.List       --Modules are imported using their full names
 import Data.Maybe (isJust, isNothing)   -- We can choose which functions to import
 import Data.Funtion as F
--- We can deal with ambiguity by adding an alias. This means we need to add "F." before every functions that are exposed from Data.Function to specify that it is from this module
+-- We can deal with ambiguity by adding an alias. This means we need to add "F." before every function that is exposed from Data.Function to specify that it is from this module
 import Prelude hiding (fst)  -- The Prelude is imported by default. By hiding `fst`, we can define our own version.
 ```
 ## Hello, Hamler!
