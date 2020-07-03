@@ -56,8 +56,8 @@ i = 1
 | ----------------- | ------------- | ----------------------------- |
 | Atom              | :ok, :error   | Erlang Atom type              |
 | Boolean(Bool)     | true \| false | Boolean type                  |
-| Char              | 'c', 'x'      | UTF-8 character                |
-| String            | "hello"       | List of UTF-8 character        |
+| Char              | 'c', 'x'      | UTF-8 character               |
+| String            | "hello"       | List of UTF-8 character       |
 | Integer(Int)      | 1, 2, -10     | Integer type                  |
 | Float(Double)     | 3.14          | Float type                    |
 | List              |               |                               |
@@ -97,7 +97,7 @@ Two types of numeric literals: Integers and Floats.
 
 ### Atoms
 
-In hamler, atoms are started with ':', and mapping to Erlang atoms.
+In Hamler, atoms start with ':', and correspond to Erlang atoms.
 
 ```hamler
 :atom, :ok, :error
@@ -105,7 +105,7 @@ In hamler, atoms are started with ':', and mapping to Erlang atoms.
 
 ### Chars
 
-UTF-8 unicode characters.
+UTF-8 Unicode characters.
 
 ```haskell
 'a', 'b', 'の'
@@ -113,7 +113,7 @@ UTF-8 unicode characters.
 
 ### Strings
 
-In hamler, string is a list of UTF-8 unicode characters.
+In Hamler, a string is a list of UTF-8 Unicode characters.
 
 ```haskell
 "Hello, World!"
@@ -132,7 +132,7 @@ printf "foo %s" "bar"
 
 ### Tuples
 
-A tuple is a sequence of values of different types. In hamler. the maximum length of the tuple is 7.
+A tuple is a sequence of values of different types. In Hamler, the maximum length of the tuple is 7.
 
 ```haskell
 (1, "a", true)
@@ -162,10 +162,10 @@ A list is sequence of values of the same type:
 
 ### Maps
 
-Erlang style maps are imported to hamler language:
+Erlang-style maps are available in Hamler:
 
 ```haskell
--- New map, values and keys must have the same type.
+-- New map; all keys must have the same type, and all values must have the same type.
 m = #{:foo => "foo", :bar => "bar"}
 
 -- Pattern matching
@@ -177,7 +177,7 @@ b :: String -- "bar"
 import Data.Map as Map
 m1 = Map.put :key "val"
 Map.get :foo m :: String -- "foo"
-Map.get :key m1 :: String --"val"
+Map.get :key m1 :: String -- "val"
 
 -- keys, values
 keys   = Map.keys   m -- [String]
@@ -231,7 +231,7 @@ TODO: Erlang reference
 
 ## User-defined Types
 
-**Hamler** supports algebraic data type (ADT):
+Hamler supports algebraic data types (ADTs):
 
 ```haskell
 -- type synonym
@@ -319,7 +319,7 @@ letters :: [Char]
 letters = ['a'..'z']
 
 n1 = length nats25   -- 26
-n2 == length letters -- 26
+n2 = length letters -- 26
 
 zip :: forall a b. [a] -> [b] -> [(a,b)]
 ordL = zip nats letters
@@ -423,7 +423,7 @@ f = case rgb of
 -- f has value "red"
 
 g = case rgb of Green -> "red"; _ -> "not red"
--- g has valur "not red"
+-- g has value "not red"
 
 ```
 
@@ -443,7 +443,7 @@ A list comprehension consists of four types of elements: *generators*, *guards*,
 -- dependent generators
 [(x,y) | x <- [1..3], y <- [x..3]]
 
--- Conditions
+-- conditions
 even i = 0 == i % 2
 [x | x <- [1..10], even x]
 ```
