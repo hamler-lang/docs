@@ -57,12 +57,14 @@ Hamler is strongly typed with compile type checking. So at compile time we can e
 Erlang is famous for its concurrency. Concurrent programming can be used to improve performance, gain scalability and fault-tolerance. **BEAM** is the virtual machine at the core of the Erlang Open Telecom Platform (OTP) which enables it to happen. By compiling Hamler to CoreErlang, we can essentially take advantage of Erlang VM.
 
 ```haskell
+import Data.List as L
+
 t :: IO ()
 t = do
   pid0 <- selfPid
-  pid100 <- seqio [spawn loop (State pid0) | x <- [1..1000]]
-  seqio [send j (Next i) | (i,j) <- (zip pid100 [last pid100|init pid100]) ]
-  send (head pid100) (Trans "great hamler! " 0)
+  pids <- seqio [spawn $ loop (State pid0) | x <- [1..1000]]
+  seqio [send j (Next i) | (i,j) <- (zip pids [last pids|L.init pids]) ]
+  send (head pids) (Trans "great hamler! " 0)
   return ()
 
 data Message = Next Pid
