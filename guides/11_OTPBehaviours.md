@@ -6,7 +6,7 @@
 
 Hamler implements OTP Behaviours based on Type classes.
 
-## GenServer
+## GenServer Behaviour
 
 ### Client-Server Model
 
@@ -20,56 +20,6 @@ See: [Erlang gen_server Behaviour](https://erlang.org/doc/design_principles/gen_
 class GenServer req rep st | req -> rep, rep -> st, st -> req where
   handleCall :: HandleCall req rep st
   handleCast :: HandleCast req rep st
-```
-
-### Start a Server process
-
-```haskell
--- | Start a standalone Server process.
-start :: forall req rep st. GenServer req rep st => (Init req st) -> Process Pid
-startWith :: forall req rep st. GenServer req rep st => Name -> (Init req st) -> Process Pid
-
--- | Start a Server process as part of a supervision tree.
-startLink :: forall req rep st. GenServer req rep st => (Init req st) -> Process Pid
-startLinkWith :: forall req rep st. GenServer req rep st => Name -> (Init req st) -> Process Pid
-```
-
-### Init callback
-
-```haskell
--- | Init Result
-data InitResult req st
-  = InitOk st (Maybe (Action req))
-    -- ^ {ok, State}
-  | InitIgnore
-    -- ^ ignore
-  | InitStop ExitReason
-    -- ^ {stop, Reason}
-
--- | Init callback
-type Init req st = Process (InitResult req st)
-```
-
-### HandleCall and HandleCast
-
-```haskell
--- | HandleCall callback
-type HandleCall req rep st
-  = req -> From -> st -> Process (Reply req rep st)
-
--- | HandleCast callback
-type HandleCast req rep st
-  = req -> st -> Process (Reply req rep st)
-```
-
-### Client APIs
-
-```haskell
--- | Synchronous call to the server process.
-call :: forall req rep. Name -> req -> Process rep
-
--- | Sends an asynchronous request to the server process.
-cast :: forall req. Name -> req -> Process ()
 ```
 
 ### Server Example
@@ -151,7 +101,57 @@ handleCast Dec (State n) = do
 handleCast _ st = noReply st
 ```
 
-## GenStatem
+### Start a Server process
+
+```haskell
+-- | Start a standalone Server process.
+start :: forall req rep st. GenServer req rep st => (Init req st) -> Process Pid
+startWith :: forall req rep st. GenServer req rep st => Name -> (Init req st) -> Process Pid
+
+-- | Start a Server process as part of a supervision tree.
+startLink :: forall req rep st. GenServer req rep st => (Init req st) -> Process Pid
+startLinkWith :: forall req rep st. GenServer req rep st => Name -> (Init req st) -> Process Pid
+```
+
+### Init callback
+
+```haskell
+-- | Init Result
+data InitResult req st
+  = InitOk st (Maybe (Action req))
+    -- ^ {ok, State}
+  | InitIgnore
+    -- ^ ignore
+  | InitStop ExitReason
+    -- ^ {stop, Reason}
+
+-- | Init callback
+type Init req st = Process (InitResult req st)
+```
+
+### HandleCall and HandleCast
+
+```haskell
+-- | HandleCall callback
+type HandleCall req rep st
+  = req -> From -> st -> Process (Reply req rep st)
+
+-- | HandleCast callback
+type HandleCast req rep st
+  = req -> st -> Process (Reply req rep st)
+```
+
+### Client APIs
+
+```haskell
+-- | Synchronous call to the server process.
+call :: forall req rep. Name -> req -> Process rep
+
+-- | Sends an asynchronous request to the server process.
+cast :: forall req. Name -> req -> Process ()
+```
+
+## GenStatem Behaviour
 
 ### Event-Driven State Machines
 
@@ -166,70 +166,6 @@ State(S) x Event(E) -> Actions(A), State(S')
 ```haskell
 class GenStatem e s d | e -> s, s -> d, d -> e where
   handleEvent :: HandleEvent e s d
-```
-
-### Start a FSM process
-
-```haskell
--- | Start a standalone FSM process
-start :: forall e s d. GenStatem e s d => (Init e s d) -> Process Pid
-startWith :: forall e s d. GenStatem e s d => Name -> (Init e s d) -> Process Pid
-
--- | Start a FSM process as part of a supervision tree.
-startLink :: forall e s d. GenStatem e s d => (Init e s d) -> Process Pid
-startLinkWith :: forall e s d. GenStatem e s d => Name -> (Init e s d) -> Process Pid
-```
-
-### Init callback
-
-```haskell
--- | Init Result
-data InitResult e s d
-  = InitOk s d [Action e]
-    -- ^ {ok, State, Actions}
-  | InitIgnore
-    -- ^ ignore
-  | InitStop ExitReason
-    -- ^ {stop, Reason}
-
--- | Init Action
-type Init e s d = Process (InitResult e s d)
-```
-
-### HandleEvent callback
-
-```haskell
--- | Event Type
-data EventType
-  = Call From | Cast | Info
-    -- ^ external event type
-  | Timeout
-    -- ^ timeout event type
-  | Internal
-    -- ^ internal
-
--- | Statem Transition
-data Transition e s d
-  = Keep d [Action e]
-  | Next s d [Action e]
-  | Repeat d [Action e]
-  | Shutdown ExitReason d
-
-type HandleEvent e s d = EventType -> e -> s -> d -> Process (Transition e s d)
-
--- | On Event
-type OnEvent e s d = EventType -> e -> d -> Process (Transition e s d)
-
--- | Handle with state functions.
-handleWith :: forall e s d. [(s, OnEvent e s d)] -> HandleEvent e s d
-```
-
-### Client APIs
-
-```
-call :: forall req rep. Name -> req -> Process rep
-
-cast :: forall msg. Name -> msg -> Process ()
 ```
 
 ### CodeLock Example
@@ -311,6 +247,70 @@ opened Timeout Lock d = do
 opened t e d = unhandled t e Opened d
 ```
 
+### Start a FSM process
+
+```haskell
+-- | Start a standalone FSM process
+start :: forall e s d. GenStatem e s d => (Init e s d) -> Process Pid
+startWith :: forall e s d. GenStatem e s d => Name -> (Init e s d) -> Process Pid
+
+-- | Start a FSM process as part of a supervision tree.
+startLink :: forall e s d. GenStatem e s d => (Init e s d) -> Process Pid
+startLinkWith :: forall e s d. GenStatem e s d => Name -> (Init e s d) -> Process Pid
+```
+
+### Init callback
+
+```haskell
+-- | Init Result
+data InitResult e s d
+  = InitOk s d [Action e]
+    -- ^ {ok, State, Actions}
+  | InitIgnore
+    -- ^ ignore
+  | InitStop ExitReason
+    -- ^ {stop, Reason}
+
+-- | Init Action
+type Init e s d = Process (InitResult e s d)
+```
+
+### HandleEvent callback
+
+```haskell
+-- | Event Type
+data EventType
+  = Call From | Cast | Info
+    -- ^ external event type
+  | Timeout
+    -- ^ timeout event type
+  | Internal
+    -- ^ internal
+
+-- | Statem Transition
+data Transition e s d
+  = Keep d [Action e]
+  | Next s d [Action e]
+  | Repeat d [Action e]
+  | Shutdown ExitReason d
+
+type HandleEvent e s d = EventType -> e -> s -> d -> Process (Transition e s d)
+
+-- | On Event
+type OnEvent e s d = EventType -> e -> d -> Process (Transition e s d)
+
+-- | Handle with state functions.
+handleWith :: forall e s d. [(s, OnEvent e s d)] -> HandleEvent e s d
+```
+
+### Client APIs
+
+```
+call :: forall req rep. Name -> req -> Process rep
+
+cast :: forall msg. Name -> msg -> Process ()
+```
+
 ## GenEvent
 
 ### Event Handling Principles
@@ -322,45 +322,6 @@ See: [Erlang gen_event Behaviour](https://erlang.org/doc/design_principles/event
 ```haskell
 class GenEvent e st | e -> st, st -> e where
   handleEvent :: HandleEvent e st
-```
-
-### Start a Event Manager process
-
-```haskell
--- | Start a standalone Event Manager process.
-start :: forall e st. GenEvent e st => (Init st) -> Process Pid
-startWith :: forall e st. GenEvent e st => Name -> (Init st) -> Process Pid
-
--- | Start a Event Manager process as part of a supervision tree.
-startLink :: forall e st. GenEvent e st => (Init st) -> Process Pid
-startLinkWith :: forall e st. GenEvent e st => Name -> (Init st) -> Process Pid
-```
-
-### Init callback
-
-```haskell
-data InitResult st
-  = InitOk st
-  | InitOkHib st
-  | InitError ExitReason
-
--- | Init callback
-type Init st = Process (InitResult st)
-```
-
-### HandleEvent Callback
-
-```haskell
--- | HandleEvent callback
-type HandleEvent e st = e -> st -> Process st
-```
-
-### Client APIs
-
-```haskell
-notify :: forall e. Name -> e -> Process ()
-
-syncNotify :: forall e. Name -> e -> Process ()
 ```
 
 ### Event Manager Example
@@ -405,6 +366,45 @@ handleEvent :: HandleEvent Event State
 handleEvent e (State events) = do
   println "Event"
   return $ State [e|events]
+```
+
+### Start a Event Manager process
+
+```haskell
+-- | Start a standalone Event Manager process.
+start :: forall e st. GenEvent e st => (Init st) -> Process Pid
+startWith :: forall e st. GenEvent e st => Name -> (Init st) -> Process Pid
+
+-- | Start a Event Manager process as part of a supervision tree.
+startLink :: forall e st. GenEvent e st => (Init st) -> Process Pid
+startLinkWith :: forall e st. GenEvent e st => Name -> (Init st) -> Process Pid
+```
+
+### Init callback
+
+```haskell
+data InitResult st
+  = InitOk st
+  | InitOkHib st
+  | InitError ExitReason
+
+-- | Init callback
+type Init st = Process (InitResult st)
+```
+
+### HandleEvent Callback
+
+```haskell
+-- | HandleEvent callback
+type HandleEvent e st = e -> st -> Process st
+```
+
+### Client APIs
+
+```haskell
+notify :: forall e. Name -> e -> Process ()
+
+syncNotify :: forall e. Name -> e -> Process ()
 ```
 
 ## Supervisor
