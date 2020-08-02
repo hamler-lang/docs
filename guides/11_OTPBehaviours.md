@@ -12,7 +12,7 @@ Hamler implements OTP Behaviours based on Type classes.
 
 See: [Erlang gen_server Behaviour](https://erlang.org/doc/design_principles/gen_server_concepts.html)
 
-![Client-server module](https://erlang.org/doc/design_principles/clientserver.gif)
+![Client-server model](https://erlang.org/doc/design_principles/clientserver.gif)
 
 ### GenServer Typeclass
 
@@ -153,7 +153,7 @@ cast :: forall req. Name -> req -> Process ()
 
 ## GenStatem Behaviour
 
-### Event-Driven State Machines
+### Event-Driven FSM
 
 See: [Erlang gen_statem Behaviour](https://erlang.org/doc/design_principles/statem.html)
 
@@ -311,7 +311,7 @@ call :: forall req rep. Name -> req -> Process rep
 cast :: forall msg. Name -> msg -> Process ()
 ```
 
-## GenEvent
+## GenEvent Behaviour
 
 ### Event Handling Principles
 
@@ -494,3 +494,4 @@ data Strategy
 
 **OneForRest**
 
+**SimpleOneForOne**
