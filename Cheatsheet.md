@@ -194,7 +194,7 @@ type Person = {name :: String, age :: Integer}
 p = {name = "John", age = 12}
 
 -- update a Person record
-p1 = p {name = "Miles", age = 20}
+p1 = p{name = "Miles", age = 20}
 
 -- accessors
 name = p1.name :: String
