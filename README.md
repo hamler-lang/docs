@@ -94,7 +94,7 @@
   - [Registered Processes](guides/10_MessagePassingConcurrency.md#registered-processes)
   - [Linking](guides/10_MessagePassingConcurrency.m#linking)
   - [Monitoring](guides/10_MessagePassingConcurrency.m#monitoring)
-  - [Process Termination](guides/10_MessagePassingConcurrency.m#process-termination)
+  - [Process Termination](guides/10_MessagePassingConcurrency.md#process-termination)
 
 11. [**OTP Behaviours**](guides/11_OTPBehaviours.md)
   - [Overview](guides/11_OTPBehaviours.md#overview)
