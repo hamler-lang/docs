@@ -6,7 +6,7 @@
 
 Hamler implements OTP Behaviours based on Type classes.
 
-## GenServer Behaviour
+## GenServer
 
 ### Client-Server Model
 
@@ -151,7 +151,7 @@ call :: forall req rep. Name -> req -> Process rep
 cast :: forall req. Name -> req -> Process ()
 ```
 
-## GenStatem Behaviour
+## GenStatem
 
 ### Event-Driven FSM
 
@@ -311,7 +311,7 @@ call :: forall req rep. Name -> req -> Process rep
 cast :: forall msg. Name -> msg -> Process ()
 ```
 
-## GenEvent Behaviour
+## GenEvent
 
 ### Event Handling Principles
 
