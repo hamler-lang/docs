@@ -4,14 +4,13 @@
 
 ## About Actor Model
 
-Professor Carl Hewitt published the famous pager *Actor model of computation* in 1974. In the thesis, he elaborates that:
+Professor Carl Hewitt published the famous pager [*Actor model of computation*](https://arxiv.org/vc/arxiv/papers/1008/1008.1459v8.pdf) in 1974. In the thesis, he elaborates that:
 
 An Actor is a computational entity that, in response to a message it receives, can concurrently:
-  - send a finite number of messages to other Actors;
-  - create a finite number of new Actors;
-  - designate the behavior to be used for the next message it receives.
 
-See: [Actor Model of Computation](https://arxiv.org/vc/arxiv/papers/1008/1008.1459v8.pdf)
+- send a finite number of messages to other Actors;
+- create a finite number of new Actors;
+- designate the behavior to be used for the next message it receives.
 
 With the rise of multi-core computing and large-scale distributed systems, the Actor Model is becoming increasingly important because of its natural concurrent, parallel, and distributed.
 
@@ -31,7 +30,7 @@ A process is identified by a Pid. Other processes can send messages to a process
 import Prelude
 import Control.Process (selfPid)
 
-go :: IO ()
+go :: Process ()
 go = do
   self <- selfPid
   pid <- spawn loop
@@ -40,21 +39,21 @@ go = do
     :pong -> println "Pong!"
   pid ! :stop
 
-loop :: IO ()
+loop :: Process ()
 loop =
   receive
     (from, :ping) -> do
       println "Ping!"
       from ! :pong
       loop
-    :stop -> exit
+    :stop -> return ()
 ```
 
 ## Spawn a new process
 
-In hamler, a new process is created via the `spawn` functions, which are defined in `Control.Process.Spawn` module.
+In Hamler, a new process is created via the `spawn` functions, which are defined in `Control.Process.Spawn` module.
 
-```haksell
+```haskell
 -- | Create a process
 spawn :: forall a. IO a -> Process Pid
 
@@ -68,19 +67,19 @@ spawnMonitor :: forall a. IO a -> Process (Pid, Ref)
 ## Send/Receive message
 
 ```haskell
-go :: IO ()
+go :: Process ()
 go = do
   pid <- spawn recv
   pid ! :msg
 
-recv :: IO ()
+recv :: Process ()
 recv = receive x -> printf "recv: %s" (showAny x)
 ```
 
 ## Selective Receive
 
 ```haskell
-go :: IO ()
+go :: Process ()
 go = do
   pid <- spawn selectiveRecv
   pid ! :bar
@@ -95,7 +94,7 @@ selectiveRecv = do
 ## Receive .. after
 
 ```haskell
-go :: IO ()
+go :: Process ()
 go = do
   pid <- spawn recvAfter
   pid ! :foo
@@ -108,12 +107,14 @@ recvAfter =
     1000 -> println "timeout"
 ```
 
-## Registeration
+## Registered Processes
+
+A process can be registered under a name, which has an Atom type.
 
 ```haskell
 import Control.Process (register, whereis, unregister)
 
-go :: IO ()
+go :: Process ()
 go = do
   pid <- spawn proc
   register :server pid
@@ -125,6 +126,8 @@ proc = receive _ -> return ()
 ```
 
 ## Linking
+
+Two processes can be linked to each other.
 
 ```haskell
 import Control.Process (killProc, trapExit)
@@ -145,6 +148,8 @@ proc = receive _ -> return ()
 ```
 
 ## Monitoring
+
+One process `Pid1` can monitor another process `Pid2`. If `Pid2` terminates,  `Pid1` will receive a 'DOWN' message from `Pid2`.
 
 ```haskell
 import Control.Process (killProc, trapExit)
@@ -171,11 +176,11 @@ proc = receive _ -> return ()
 import Control.Process
 
 -- Exit the current process
-exit
+exit :noraml
 
 do
   pid <- spawn proc
-  exitProcWith pid :reason
+  exitProc pid :reason
 
 proc :: Process ()
 proc = receive _ -> return ()
