@@ -567,6 +567,6 @@ TODO:...
 ## Reserved Words
 
 ```haskell
-as case class data do else false forall foreign hiding import if in infix infixl infixr instance kind let module newtype of receive then true type where
+as after case class data do else false forall foreign hiding import if in infix infixl infixr instance kind let module newtype of receive then true type where
 ```
 
