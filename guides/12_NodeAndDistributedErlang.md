@@ -4,13 +4,13 @@
 
 ## Distributed Erlang/OTP
 
-Hamler is compiled to Erlang/OTP, which is a concurrent, fault-tolerant, distributed programming platform. A distributed Erlang/OTP system consists of a number of Erlang runtime systems called `node`. Nodes connect with TCP/IP sockets and communicate by message passing.
+Hamler is compiled to Erlang/OTP, which is a concurrent, fault-tolerant, distributed programming platform. A distributed Erlang/OTP system consists of a number of Erlang runtime systems called `node`. Nodes are connected with TCP/IP sockets and communicate by message passing.
 
 ![DistributedNodes](https://www.hamler-lang.org/images/distributed-nodes.png)
 
 ## Connect Nodes
 
-A `node` is identified by a unique name as an email address. Erlang nodes communicate with each other via the names.
+An Erlang runtime system -- `node` is identified by a unique name like an email address. Erlang nodes communicate with each other via these names.
 
 Start Erlang `epmd` for registering node name first:
 
