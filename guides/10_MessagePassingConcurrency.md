@@ -18,7 +18,7 @@ With the rise of multi-core computing and large-scale distributed systems, the A
 
 An actor in Hamler/Erlang is defined as a process, which works like an OS process. Each process has its own memory, composed of a mailbox, a heap, a stack and a process control block(PCB) with information about the process.
 
-![Process](https://www.hamler-lang.org/images/process.png)
+![Process](https://www.hamler-lang.org/images/process@1x.png)
 
 Processes in Erlang are very lightweight. We can create millions of processes on a running Erlang virtual machine.
 
