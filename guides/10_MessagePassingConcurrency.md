@@ -130,21 +130,16 @@ proc = receive _ -> return ()
 Two processes can be linked to each other.
 
 ```haskell
+import Prelude
 import Control.Process (killProc, trapExit)
 
 go :: forall a. Process a
 go = do
   trapExit true
-  pid <- spawn proc
+  pid <- spawn (receive _ -> return ())
   link pid
   killProc pid
-  recv
-
-recv :: forall a. Process a
-recv = receive msg -> return msg
-
-proc :: Process ()
-proc = receive _ -> return ()
+  receive msg -> return msg
 ```
 
 ## Monitoring
@@ -152,8 +147,7 @@ proc = receive _ -> return ()
 One process `Pid1` can monitor another process `Pid2`. If `Pid2` terminates,  `Pid1` will receive a 'DOWN' message from `Pid2`.
 
 ```haskell
-import Control.Process (killProc, trapExit)
-
+import Prelude
 import Control.Process (killProc)
 
 go :: forall a. IO a
@@ -161,10 +155,7 @@ go = do
   pid <- spawn proc
   ref <- monitor pid
   killProc pid
-  recv
-
-recv :: forall a. Process a
-recv = receive msg -> return msg
+  receive msg -> return msg
 
 proc :: Process ()
 proc = receive _ -> return ()
@@ -173,16 +164,16 @@ proc = receive _ -> return ()
 ## Process Termination
 
 ```haskell
-import Control.Process
+import Prelude
+import Control.Process (isAlive, exitProc)
 
 -- Exit the current process
 exit :normal
 
-do
-  pid <- spawn proc
+go :: Process Boolean
+go = do
+  pid <- spawn (receive _ -> return ())
   exitProc pid :reason
-
-proc :: Process ()
-proc = receive _ -> return ()
+  isAlive pid
 ```
 
