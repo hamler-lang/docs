@@ -4,7 +4,7 @@
 
 ## Overview
 
-Hamler implements OTP Behaviours based on Type classes.
+Hamler implements OTP Behaviours with Type Classes.
 
 ## GenServer
 

@@ -4,7 +4,7 @@
 
 ## About Actor Model
 
-Professor Carl Hewitt published the famous pager [*Actor model of computation*](https://arxiv.org/vc/arxiv/papers/1008/1008.1459v8.pdf) in 1974. In the thesis, he elaborates that:
+Professor Carl Hewitt published the famous paper [*Actor model of computation*](https://arxiv.org/vc/arxiv/papers/1008/1008.1459v8.pdf) in 1974. In the thesis, he elaborates that:
 
 An Actor is a computational entity that, in response to a message it receives, can concurrently:
 
@@ -176,7 +176,7 @@ proc = receive _ -> return ()
 import Control.Process
 
 -- Exit the current process
-exit :noraml
+exit :normal
 
 do
   pid <- spawn proc
