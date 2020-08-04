@@ -117,9 +117,9 @@ import Control.Process (register, whereis, unregister)
 go :: Process ()
 go = do
   pid <- spawn proc
-  register :server pid
-  res <- whereis :server
-  unregister :server
+  register :name pid
+  res <- whereis :name
+  unregister :name
 
 proc :: Process ()
 proc = receive _ -> return ()
