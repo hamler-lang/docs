@@ -18,10 +18,6 @@ Another example is `List`, from its definition we can see that it has a recursiv
 ```haskell
 data List a = Cons a (List a)
             | Empty
-{-
-data [a] = a : [a]
-         | []
--}
 ```
 
 ## Newtypes
@@ -68,10 +64,10 @@ isEmpty [x|xs] = false
 showPerson :: { firstName :: Name, lastName :: Name } -> Name
 showPerson { firstName: x, lastName: y } = y <> ", " <> x
 
-> showPerson { firstName: "Phil", lastName: "Freeman" }
+> showPerson { firstName = "Phil", lastName = "Freeman" }
 "Freeman, Phil"
 
-> showPerson { firstName: "Phil", lastName: "Freeman", location: "Los Angeles" }
+> showPerson { firstName = "Phil", lastName = "Freeman", location = "Los Angeles" }
 "Freeman, Phil"
 ```
 
@@ -100,6 +96,9 @@ We can also pattern match on `Map`s, and this is very similar to `Record`s, exce
 getID :: Map String Integer -> Maybe Integer
 getID #{ "Wang":= x, "Thomas" := y, "Leeming" := z } = Just x
 getID _                                              = Nothing
+
+> getID #{"Wang" => 10, "Thomas" => 20 , "Leeming" => 30 }
+{'Just',10}
 ```
 
 ## Binary Patterns
@@ -107,9 +106,25 @@ getID _                                              = Nothing
 Matching on binaries is just like how it is done in Erlang. Int the following example, we are trying to get a 24-bit integer out of the Binary  passed to getA.
 
 ```haskell
-getA :: Binary -> Just Integer
-getA << (a):24:Big-Integer | (b):4:Binary-Little | (c):32:Binary >> = Just a
-getA _                                                               = Nothing
+getA :: Binary -> Maybe (Integer, Binary, Binary)
+getA << a:24:Big-Integer , b:4:Binary-Little , c:3:Binary >> = Just (a,b,c)
+getA _                                                       = Nothing
+
+> getA <<0,0,1,"aaaa","bbb">>
+{'Just',{1,<<"aaaa">>,<<"bbb">>}}
+
+> getA <<0,0,1,"aaaa","bb">>
+{'Nothing'}
+
+getB :: Binary -> Maybe (Integer, Binary, Binary)
+getB << a:24:Big-Integer , b:4:Binary-Little , c:Binary >> = Just (a,b,c)
+getB _                                                     = Nothing
+
+> getB <<0,0,1,"aaaa">>
+{'Just',{1,<<"aaaa">>,<<>>}}
+
+> getB <<0,0,1,"aaaa","bbbbbbbbb">>
+{'Just',{1,<<"aaaa">>,<<"bbbbbbbbb">>}}
 ```
 
 `Big` and `Little` means the endianess in the part we need. `Integer` or `Binary` is the type we will give to after we extract the segment. The number of bits of the segment depends on the size of the segment we need and the type we assign. If they type we assign is an `Integer` then we get exact the same number of the `size` of bits, which is required to be evenly divisible by 8. If it is a `Binary` we want, it will need 8 times the size of bits.
@@ -119,10 +134,16 @@ getA _                                                               = Nothing
 With `case` we can also pattern match on the value after some computations when there is no need to bind the intermediate result.
 
 ```haskell
+plus :: (Integer, Integer) -> Integer
 plus (x, y) = x + y
 
 sumUpTo :: Integer -> (Integer, Integer) -> Boolean
 sumUpTo x p = case plus p of
-                x -> true
+                10 -> true
                 _ -> false
+> sumUpTo 1 (2,3)
+false
+
+> sumUpTo 1 (2,8)
+true
 ```

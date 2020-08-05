@@ -193,7 +193,7 @@ This is how we update a record.
 
 ```haskell
 newLeader :: Person
-newLeader = leader{firstName : "James"}
+newLeader = leader{firstName = "James"}
 
 >newLeader.lastName
 "Portsman"

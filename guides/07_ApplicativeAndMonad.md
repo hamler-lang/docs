@@ -29,10 +29,6 @@ instance Applicative Maybe where
   pure = Just
   Nothing   <*> mb = Nothing
   (Just f) <*> mb = map f mb
-
-instance Applicative [] where
-  pure = (:[])
-  fs <*> xs = [f x | x <- xs, f <- fs]
 ```
 
 Let's have a closer look at instance `Applicative []` , we can see that every `f` in the list will get applied to all the elements in the list.  So with  `(+) <$> [1,2] <*> [3,4,5]`, we will have a non-deterministic computation on `(+)`.

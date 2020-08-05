@@ -9,14 +9,24 @@ Resursion is an important technique in programming, especially in functional pro
 Simple examples:
 
 ```haskell
-fact :: Int -> Int
+fact :: Integer -> Integer
 fact 0 = 1
 fact n = n * fact (n - 1)
 
-fib :: Int -> Int
+> fact 10
+3628800
+> fact 5
+120
+
+fib :: Integer -> Integer
 fib 0 = 1
 fib 1 = 1
 fib n = fib (n - 1) + fib (n - 2)
+
+> fib 10
+89
+> fib 5
+8
 ```
 
 ## Recursions on more complicated datatypes
@@ -24,9 +34,12 @@ fib n = fib (n - 1) + fib (n - 2)
 Definition of the datatype list is recursive. So,when we define a function for such datatypes, it comes naturally to define the function recursively.
 
 ```haskell
-length :: forall a . [a] -> Integer
-length  []    = 0
-length (x:xs) = 1 + length xs
+length' :: forall a . [a] -> Integer
+length'  []    = 0
+length' [x|xs] = 1 + length xs
+
+> length' "hamler"
+6
 ```
 
 ## Map, filter and fold
@@ -36,31 +49,28 @@ length (x:xs) = 1 + length xs
 Here are the definitions.
 
 ```haskell
-map :: forall a b. (a -> b) -> [a] -> [b]
-map f  []      = []
-map f (x:xs) = f x : xs
+map' :: forall a b. (a -> b) -> [a] -> [b]
+map' f  []      = []
+map' f [x|xs] = [f x | map' f xs]
 
-filter :: forall a. (a -> Boolean) -> [a] -> [a]
-filter p []     = []
-filter p (x:xs) = if p x then (x : filter p xs)
-                         else filter p xs
+> map' (\x -> x +1 ) [1..10]
+[2,3,4,5,6,7,8,9,10,11]
 
-foldr :: forall a b. (a -> b -> b) -> b -> [a] -> b --simplified defination see typeclass for more info
-foldr f k []     = k
-foldr f k (x:xs) = f x (foldr f k xs)
-```
+filter' :: forall a. (a -> Boolean) -> [a] -> [a]
+filter' p []     = []
+filter' p [x|xs] = if p x
+                   then [x | filter p xs]
+                   else filter p xs
 
-Here are some examples on the usage.
+> filter' (\x -> x > 5) [1..10]
+[6,7,8,9,10]
 
-```haskell
->map (+1) [1,2,3,4,5]
-[2,3,4,5,6]
+foldl' :: forall a b. (b -> a -> b) -> b -> [a] -> b
+foldl' f k []     = k
+foldl' f k [x|xs] = foldl' f (f k x) xs
 
->filter (> 0) [-3,-2,-1,0,1,2,3]
-[1,2,3]
-
->foldr (+) 0 [1,2,3,4,5]
-15
+> foldl' (+) 0 [1..10]
+55
 ```
 
 ## List Comprehensions
@@ -76,12 +86,14 @@ With list comprehension we can also do things like:
 
 ```haskell
 > [x + y | x <- [1..2], y<- [1..3]]
-[2,4,5]
+[2,3,4,3,4,5]
 
 -- .. is syntax sugar for range
 > [1..10]
 [1,2,3,4,5,6,7,8,9,10]
 
+> ['a' .. 'z']
+"abcdefghijklmnopqrstuvwxyz"
 ```
 
 ## Higher Order Functions
