@@ -293,10 +293,8 @@ Ei ::= Value
 ```hamler
 <<127,0,0,1>>
 <<"ABC">>
-<<1:16,2:4,3:4>>
 
 -- Binary Pattern Match
-<<x:3,y:5,z:8>> = <<1,0>>
 <<bigI:16:Big-Unsigned-Integer>> = <<1,2>>
 <<litI:16:Little-Signed-Integer>> = <<1,2>>
 ```

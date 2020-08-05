@@ -7,9 +7,9 @@ Hamler added syntaxes which are more familiar to Erlang programmers.
 Hamler support Binary
 
 ```haskell
-getA :: Binary -> Just Integer
-getA << (a):24:Big-Integer | (b):4:Binary-Little | (c):32:Binary >> = Just a
-getA _                                                               = Nothing
+getA :: Binary -> Maybe Integer
+getA << a:24:Big-Integer , b:4:Binary-Little , c:3:Binary >> = Just a
+getA _                                                       = Nothing
 ```
 
 ### Map

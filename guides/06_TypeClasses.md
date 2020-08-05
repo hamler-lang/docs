@@ -39,10 +39,6 @@ class Functor f where
 instance Functor Maybe where
   map f (Just x) = Just (f x)
   map f  Nothing = Nothing
-
-instance Functor [] where
-  map f []     = []
-  map f (x:xs) = f x : map f xs
 ```
 
 ## Common type classes
@@ -58,8 +54,6 @@ class Eq a => Ord a where
 class Foldable f where
   foldl :: forall a b. (b -> a -> b) -> b -> f a -> b
   foldr :: forall a b. (a -> b -> b) -> b -> f a -> b
-
-class Semigroup a where
-  append :: a -> a -> a
+  foldMap :: forall a m. Monoid m => (a -> m) -> f a -> m
 ```
 
