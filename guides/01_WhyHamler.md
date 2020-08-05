@@ -73,19 +73,15 @@ data Message = Next Pid
 
 data State = State Pid
 
-dealMessage :: State ->  Message -> IO State
-dealMessage (State pid) (Next p) = return (State p)
-dealMessage (State pid) (Trans str 11111) = return (State pid)
-dealMessage (State pid) (Trans str i) =
+handleMsg :: State ->  Message -> IO State
+handleMsg (State pid) (Next p) = return (State p)
+handleMsg (State pid) (Trans str 1111) = return (State pid)
+handleMsg (State pid) (Trans str i) =
   do send pid (Trans str (i+1))
      pid0 <- getSelf
      println (show pid0 <> " -> " <> show pid <> ": " <> str <> show i)
      return (State pid)
 
 loop :: State -> IO ()
-loop s = do
-  x <- receive
-         v -> return v
-  s1 <- dealMessage s x
-  loop s1
+loop s = receive v -> handleMsg s v >>= loop
 ```
