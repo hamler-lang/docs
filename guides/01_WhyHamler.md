@@ -58,7 +58,6 @@ Erlang is famous for its concurrency. Concurrent programming can be used to impr
 
 ```haskell
 import Prelude
-import Control.Process (getSelf)
 import Data.List as L
 
 start :: IO ()
