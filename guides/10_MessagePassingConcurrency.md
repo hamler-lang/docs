@@ -28,11 +28,10 @@ A process is identified by a Pid. Other processes can send messages to a process
 
 ```haskell
 import Prelude
-import Control.Process (selfPid)
 
 go :: Process ()
 go = do
-  self <- selfPid
+  self <- getSelf
   pid <- spawn loop
   pid ! (self, :ping)
   receive
@@ -91,7 +90,7 @@ selectiveRecv = do
   receive :bar -> println "bar"
 ```
 
-## Receive .. after
+## Receive ... after
 
 ```haskell
 go :: Process ()
