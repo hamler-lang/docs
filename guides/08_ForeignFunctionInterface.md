@@ -10,26 +10,28 @@ Since Hamler compiles to CoreErlang, it makes sense that there should be some fe
 
 There are lot of examples in the [lib](https://github.com/hamler-lang/hamler/tree/master/lib) directory, from which you can easily discover that Erlang code and Hamler code are in the same directory with same filename, when defining a foreign function.
 
-For example, in `Data.Eq` we defined `Eq` instances for different types. These are done with Erlang Code.
-
-In Eq.erl we have:
-
-```erlang
-eqCharImpl(C1, C2) -> C1 =:= C2.
-```
-
-This is a function we defined to compare two `Char`s.
-
-In Eq we can easily import this with:
+For example, in `Data.Map` we defined datatype `Map`, so first define `Map` as a foreign imported datatype and give it its kind.
 
 ```haskell
-instance Eq Char where
-  eq = eqCharImpl
-
-foreign import eqCharImpl :: Char -> Char -> Boolean
+foreign import data Map :: Type -> Type -> Type
 ```
 
-The nice thing is that we can give `eqCharImpl` a type; however there is no way that Hamler can check this against the actual code you've written in Erlang. So when you are doing something not pure, remember to wrap the output with IO.
+Then we can define some basic functions in erlang and import them to hamler.
+In Map.erl we have:
+
+```erlang
+singleton(K, V) -> #{K => V}.
+```
+
+This is a function we defined to create a new map with one key to one value.
+
+In hamler we can easily import this with:
+
+```haskell
+foreign import singleton :: forall k v. k -> v -> Map k v
+```
+
+The nice thing is that we can give `singleton` a type; however there is no way that Hamler can check this against the actual code you've written in Erlang. So when you are doing something not pure, remember to wrap the output with IO.
 
 ```haskell
 foreign import readFile :: String -> IO String
