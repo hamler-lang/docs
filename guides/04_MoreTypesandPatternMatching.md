@@ -107,7 +107,7 @@ Matching on binaries is just like how it is done in Erlang. Int the following ex
 
 ```haskell
 getA :: Binary -> Maybe (Integer, Binary, Binary)
-getA << a:24:Big-Integer , b:4:Binary-Little , c:3:Binary >> = Just (a,b,c)
+getA << a:24/big-integer , b:4/binary-little , c:3/binary >> = Just (a,b,c)
 getA _                                                       = Nothing
 
 > getA <<0,0,1,"aaaa","bbb">>
@@ -117,7 +117,7 @@ getA _                                                       = Nothing
 {'Nothing'}
 
 getB :: Binary -> Maybe (Integer, Binary, Binary)
-getB << a:24:Big-Integer , b:4:Binary-Little , c:Binary >> = Just (a,b,c)
+getB << a:24/big-integer , b:4/binary-little , c/binary >> = Just (a,b,c)
 getB _                                                     = Nothing
 
 > getB <<0,0,1,"aaaa">>
