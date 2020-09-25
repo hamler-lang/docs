@@ -16,7 +16,7 @@ $ brew install hamler
 1. Install Erlang
 
    ```shell
-   $brew install erlang@22
+   $ brew install erlang@23
    ```
 
 2. Install Stack
