@@ -22,7 +22,7 @@ data List a = Cons a (List a)
 
 ## Newtypes
 
-`newtype`s are used to distinguish two types which have have the same type of value but different units/meanings.
+`newtype`s are used to distinguish two types which have the same type of value but different units/meanings.
 
 For example:
 
@@ -31,7 +31,7 @@ newtype Email = Email String
 
 m1 :: Map Email Integer
 m1 = empty
---This is forces us to only pass a String with a contrutor Email.
+--This forces us to only pass a String with a construtor Email.
 --So insert "abc" 123 m1 will fail
 ```
 
@@ -103,7 +103,7 @@ getID _                                              = Nothing
 
 ## Binary Patterns
 
-Matching on binaries is just like how it is done in Erlang. Int the following example, we are trying to get a 24-bit integer out of the Binary  passed to getA.
+Matching on binaries is just like how it is done in Erlang. In the following example, we are trying to get a 24-bit integer out of the Binary  passed to `getA`.
 
 ```haskell
 getA :: Binary -> Maybe (Integer, Binary, Binary)

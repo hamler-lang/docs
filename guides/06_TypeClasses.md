@@ -4,7 +4,7 @@
 
 ## Introduction
 
-A type class defines some types related by their operations. This is saying that typeclasses are usually defined in terms of those operations, and these operations group those type together.
+A type class defines some types related by their operations. This is saying that typeclasses are usually defined in terms of those operations, and these operations group those types together.
 
 For example, we can put all types that can be converted to a `String` in the same type class called `Show` .
 
@@ -56,4 +56,3 @@ class Foldable f where
   foldr :: forall a b. (a -> b -> b) -> b -> f a -> b
   foldMap :: forall a m. Monoid m => (a -> m) -> f a -> m
 ```
-

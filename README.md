@@ -8,7 +8,7 @@
 
 01. [**Why Hamler?**](guides/01_WhyHamler.md)
   - [What's Hamler](guides/01_WhyHamler.md#whats-hamler)
-  - [Prequisitcs](guides/01_WhyHamler.md#prequisitcs)
+  - [Prerequisites](guides/01_WhyHamler.md#prerequisites)
   - [Haskell Style](guides/01_WhyHamler.md#haskell-style)
   - [Type Checking](guides/01_WhyHamler.md#type-checking)
   - [Erlang and Concurrency](guides/01_WhyHamler.md#erlang-and-concurrency)
