@@ -213,8 +213,8 @@ Binaries are imported from Erlang, which are raw byte strings.
 
 -- Binary Pattern Match
 <<x:3,y:5,z:8>> = <<1,0>>
-<<bigI:16:Big-Unsigned-Integer>> = <<1,2>>
-<<litI:16:Little-Signed-Integer>> = <<1,2>>
+<<bigI:16/big-unsigned-integer>> = <<1,2>>
+<<litI:16/little-signed-integer>> = <<1,2>>
 ```
 
 ### Ports
