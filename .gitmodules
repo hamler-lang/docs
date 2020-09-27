@@ -1,0 +1,3 @@
+[submodule "courses/hamlerDemo"]
+	path = courses/hamlerDemo
+	url = https://github.com/EMQ-YangM/hamlerDemo.git
