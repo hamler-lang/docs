@@ -198,3 +198,16 @@ newLeader = leader{firstName = "James"}
 >newLeader.lastName
 "Portsman"
 ```
+
+```haskell
+a = { name = "yang"
+    , pos ={ x = 10
+           , y = 20
+           , info = { s = "val"
+                    , v = 45.9
+                    }
+           }
+    }
+
+b = a{pos.info.s = "newVal"}
+```
