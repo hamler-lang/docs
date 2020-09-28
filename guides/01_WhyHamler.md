@@ -31,7 +31,7 @@ Cool, let's quit the bragging and kick off.
 
 First of all, Hamler is purely functional. It has really similar syntax to Haskell, so if you are familiar with Haskell it should not be a problem. However, if you are not, the guide should be able to walk through the basic syntax and make you more comfortable with programming functionally.
 
-This is an example of implementing merge sort in Hamler. It is normal that you don't understand what going, the purpose of the example to is just let you get a gist of what will the code look.
+This is an example of implementing merge sort in Hamler. It is normal that you don't understand what is going on, the purpose of the example is to just let you get a gist of what will the code look like.
 
 ```haskell
 merge :: forall a. Ord a => [a] -> [a] -> [a]

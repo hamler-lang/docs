@@ -98,7 +98,7 @@ With list comprehension we can also do things like:
 
 ## Higher Order Functions
 
-Functions like map, filter and foldr are also called higher order functions, becuase they take a function as their argument. A higher order function takes a function as its argument or/and returns a function as it's result.
+Functions like map, filter and foldr are also called higher order functions, because they take a function as their argument. A higher order function takes a function as its argument or/and returns a function as it's result.
 
 Here are some more examples of such functions.
 

@@ -121,7 +121,7 @@ The key word `forall`indicates that `id` is univerally quantified, meaning that 
 1
 ```
 
-A more complicated example is `flip`. `flip`is also a [higher-order function](05_HigherOrderFunctionsAndRecursions.md), which will be explained in the later chapter.
+A more complicated example is `flip`. `flip` is also a [higher-order function](05_HigherOrderFunctionsAndRecursions.md), which will be explained in a later chapter.
 
 ```haskell
 > :type flip
