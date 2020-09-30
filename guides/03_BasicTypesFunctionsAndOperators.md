@@ -198,3 +198,23 @@ newLeader = leader{firstName = "James"}
 >newLeader.lastName
 "Portsman"
 ```
+
+```haskell
+a = { name = "yang"
+    , position =
+         { streetNumber = 232
+         , location = { x = 12.223
+                      , y = 45.9 
+                      }
+         }
+    }
+
+b = a{position.location.x = 10.003}
+
+
+> a.position.location.x
+12.223
+> b.position.location.x
+10.003
+
+```
