@@ -570,3 +570,25 @@ TODO:...
 as after case class data do else false forall foreign hiding import if in infix infixl infixr instance kind let module newtype of receive then true type where
 ```
 
+## Holes
+
+Holes are widely used in the method of "Type-Driven Development". Holes stand for incomplete parts of programs.
+When you are not sure about how to define a function, try using holes to turn to REPL for help.
+To introduce a hole, give a name prefix with `?`.
+
+```
+> 42 + ?arg_0
+Error found:
+in module $REPL
+at :1:6 - 1:12 (line 1, column 6 - line 1, column 12)
+
+  Hole 'arg_0' has the inferred type
+           
+    Integer
+           
+  You could substitute the hole with one of these values:
+                                                    
+    $REPL.it            :: Integer                  
+    Data.Semiring.one   :: forall a. Semiring a => a
+    Data.Semiring.zero  :: forall a. Semiring a => a
+```
