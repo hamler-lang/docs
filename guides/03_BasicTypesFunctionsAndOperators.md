@@ -107,14 +107,14 @@ plus 2:: Integer -> Integer
 
 ## Quantified Types
 
-They are also known as **polymorhphic types**.
+They are also known as **polymorphic types**.
 
 ```haskell
 > :type id
 id :: forall a. a -> a
 ```
 
-The key word `forall`indicates that `id` is univerally quantified, meaning that `id` can be applied to any type.
+The key word `forall` indicates that `id` is univerally quantified, meaning that `id` can be applied to any type.
 
 ```haskell
 > id 1
@@ -130,7 +130,7 @@ forall a b c. (a -> b -> c) - > b -> a -> c
 
 ## Notes On Indentations
 
-Like all ML Language Family, Hamler is indentation sensitive. Any declaration in the same block should have the same level of indentation. In the case of a declaration spans more than one line, the other lines have to be intended past the first line.
+Like a lot of ML based languages, Hamler is indentation sensitive. Any declaration in the same block should have the same level of indentation. In the case of a declaration spans more than one line, the other lines have to be intended past the first line.
 
 ```haskell
 flip x f = f
@@ -142,7 +142,7 @@ flip f x = f
 
 **`Let` and `Where` Bindings**
 
-Keywords such as Let and Where introduces a new block, where further indentation is needed.
+Keywords such as let and where introduce a new block, where further indentation is needed.
 
 ```haskell
 distance x y = sqrt z
@@ -154,7 +154,7 @@ distance x y = sqrt z
 
 ## Type Synonym
 
-Type synonym can be used to simplify a long type name to make code more readable.
+Type synonym can be used to simplify a long type name to make the code more readable.
 
 ```haskell
 >:i String
