@@ -44,7 +44,7 @@ In Hamler `String` is just a list of `Char`
 
 **Binaries**
 
-This is the very unique datatype exists in Erlang, and notes for Haskell users `Binary` contains the same information as `ByteString` if you are not very familiar with binaries, this [link](https://erlang.org/doc/man/binary.html) should be helpful for some intuition.
+This is the very unique datatype that exists in Erlang. `Binary` contains the same information as `ByteString` and if you are not very familiar with binaries, this [link](https://erlang.org/doc/man/binary.html) should be helpful for some intuition.
 
 ```haskell
 <<1,2,3:8,4:16,5,"abcdefg">> :: Binary
@@ -195,8 +195,8 @@ This is how we update a record.
 newLeader :: Person
 newLeader = leader{firstName = "James"}
 
->newLeader.lastName
-"Portsman"
+>newLeader.firstName
+"James"
 ```
 
 ```haskell
