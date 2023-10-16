@@ -218,3 +218,16 @@ b = a{position.location.x = 10.003}
 10.003
 
 ```
+
+```haskell
+a = { name = "yang"
+    , pos ={ x = 10
+           , y = 20
+           , info = { s = "val"
+                    , v = 45.9
+                    }
+           }
+    }
+
+b = a{pos.info.s = "newVal"}
+```
